@@ -66,13 +66,13 @@ function template_header($title)
 
 	if (isset($_SESSION['type'])) {
 
-		if ($_SESSION['type'] == 'admin'){echo "<a href='indexadmin.php'><i class='fas fa-tools'></i>Compte Admin</a>";}
+		if ($_SESSION['type'] == 'admin'){echo "<a href='indexadmin.php'><i class='fas fa-tools'></i>Espace Admin</a>";}
 
-		if ($_SESSION['type'] == 'famille'){echo "<a href='indexfamille.php'><i class='fas fa-users'></i>Compte Famille</a>";}
+		if ($_SESSION['type'] == 'famille'){echo "<a href='indexfamille.php'><i class='fas fa-users'></i>Espace Famille</a>";}
 
-		if ($_SESSION['type'] == 'eleve'){echo "<a href='indexeleve.php'><i class='fas fa-user-graduate'></i>Compte Elève</a>";}
+		if ($_SESSION['type'] == 'eleve'){echo "<a href='indexeleve.php'><i class='fas fa-user-graduate'></i>Espace Elève</a>";}
 
-		if ($_SESSION['type'] == 'enseignant'){echo "<a href='indexenseignant.php'><i class='fas fa-chalkboard-teacher'></i>Compte Enseignant</a>";}
+		if ($_SESSION['type'] == 'enseignant'){echo "<a href='indexenseignant.php'><i class='fas fa-chalkboard-teacher'></i>Espace Enseignant</a>";}
 
 		if ($_SESSION['type'] == 'admin' OR $_SESSION['type'] == 'famille' OR $_SESSION['type'] == 'eleve' OR $_SESSION['type'] == 'enseignant') {
 			$idEdit = $_SESSION['id'];
@@ -85,7 +85,7 @@ function template_header($title)
 			Mon Compte
 		</a>
 		<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
-			<li><a class='dropdown-item' href='editCompte.php?id=".$idEdit."'>Modifier mon compte</a></li>
+			<li><a class='dropdown-item' href='editcompte.php?id=".$idEdit."'>Modifier mon compte</a></li>
 			<li><a class='dropdown-item' href='logout.php'>Déconnexion</a></li>
 			</ul>
 		</div>

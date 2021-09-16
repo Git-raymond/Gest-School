@@ -25,7 +25,7 @@ session_start();
     if (isset($_REQUEST['valider'])) {
         $username = $_REQUEST['username'];
         $type = $_REQUEST['type'];
-        $password = $_REQUEST['password'];
+        $password = hash('sha256',$_REQUEST['password']);
 
         if (empty($username)) {
             $errorMsg = "Entrez votre nom";
@@ -35,13 +35,15 @@ session_start();
             $errorMsg = "Sélectionner votre rôle";
         } else if ($username and $password and $type) {
             try {
-                $select_stmt = $db->prepare("SELECT username, type, password FROM comptes WHERE username=:uusername AND type=:utype AND password=:upassword");
+                $select_stmt = $db->prepare("SELECT id, username, type, password FROM comptes WHERE username=:uusername AND type=:utype AND password=:upassword");
+                // $select_stmt->bindParam(":uid", $id);
                 $select_stmt->bindParam(":uusername", $username);
                 $select_stmt->bindParam(":utype", $type);
                 $select_stmt->bindParam(":upassword", $password);
                 $select_stmt->execute();
 
                 while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $id = $row["id"];
                     $dbusername = $row["username"];
                     $dbtype = $row["type"];
                     $dbpassword = $row["password"];
@@ -53,7 +55,7 @@ session_start();
                                 case "admin":
                                     $_SESSION["admin_login"] = $username;
                                     $_SESSION['type'] = $type;
-                                    // $_SESSION['id'] = $id;
+                                    $_SESSION['id'] = $id;
                                     $loginMsg = "Redirection vers compte Admin";
                                     header("refresh:1;indexadmin.php");
                                     break;
@@ -61,6 +63,7 @@ session_start();
                                 case "famille":
                                     $_SESSION["famille_login"] = $username;
                                     $_SESSION['type'] = $type;
+                                    $_SESSION['id'] = $id;
                                     $loginMsg = "Redirection vers compte Famille";
                                     header("refresh:1;indexfamille.php");
                                     break;
@@ -68,6 +71,7 @@ session_start();
                                 case "eleve":
                                     $_SESSION["eleve_login"] = $username;
                                     $_SESSION['type'] = $type;
+                                    $_SESSION['id'] = $id;
                                     $loginMsg = "Redirection vers compte Elève";
                                     header("refresh:1;indexeleve.php");
                                     break;
@@ -75,27 +79,28 @@ session_start();
                                 case "enseignant":
                                     $_SESSION["enseignant_login"] = $username;
                                     $_SESSION['type'] = $type;
+                                    $_SESSION['id'] = $id;
                                     $loginMsg = "Redirection vers compte Enseignant";
                                     header("refresh:2;indexenseignant.php");
                                     break;
 
                                 default:
-                                    $errorMsg= "Le nom ou le mot de passse est incorrect";
+                                    $errorMsg= "Le rôle/nom/mot de passse est incorrect";
                             }
                         } else {
-                            $errorMsg= "Le nom ou le mot de passse est incorrect";
+                            $errorMsg= "Le rôle/nom/mot de passse est incorrect";
                         }
                     } else {
-                        $errorMsg= "Le nom ou le mot de passse est incorrect";
+                        $errorMsg= "Le rôle/nom/mot de passse est incorrect";
                     }
                 } else {
-                    $errorMsg= "Le nom ou le mot de passse est incorrect";
+                    $errorMsg= "Le rôle/nom/mot de passse est incorrect";
                 }
             } catch (PDOException $e) {
                 $e->getMessage();
             }
         } else {
-            $errorMsg[] = "Le nom ou le mot de passse est incorrect";
+            $errorMsg[] = "Le rôle/nom/mot de passse est incorrect";
         }
     }
     ?>
@@ -124,10 +129,10 @@ session_start();
                 </div>
                 <p class="box-register p-3 rounded mx-auto">Vous êtes nouveau ici ? <a href="register.php">S'inscrire</a></p>
                 <?php if (!empty($errorMsg)) { ?>
-                    <p class="text-danger errorMessage"><?php echo $errorMsg; ?></p>
+                    <p class="text-danger"><?php echo $errorMsg; ?></p>
                 <?php } ?>
                 <?php if (!empty($loginMsg)) { ?>
-                    <p class="text-success errorMessage"><?php echo $loginMsg; ?></p>
+                    <p class="text-success"><?php echo $loginMsg; ?></p>
                 <?php } ?>
             </form>
         </div>
@@ -139,3 +144,6 @@ session_start();
 
 
 <?= template_footer() ?>
+
+
+hash('sha256',$password)

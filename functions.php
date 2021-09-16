@@ -75,7 +75,7 @@ function template_header($title)
 		if ($_SESSION['type'] == 'enseignant'){echo "<a href='indexenseignant.php'><i class='fas fa-chalkboard-teacher'></i>Compte Enseignant</a>";}
 
 		if ($_SESSION['type'] == 'admin' OR $_SESSION['type'] == 'famille' OR $_SESSION['type'] == 'eleve' OR $_SESSION['type'] == 'enseignant') {
-			// $id = $_SESSION['id'];
+			$idEdit = $_SESSION['id'];
 			echo " 
 			<nav id='navbar' class='navbar'>		
 			<a href='index.php'><i class='fas fa-home'></i>Accueil</a>
@@ -85,7 +85,7 @@ function template_header($title)
 			Mon Compte
 		</a>
 		<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
-			<li><a class='dropdown-item' href='editCompte.php?id='>Modifier mon compte</a></li>
+			<li><a class='dropdown-item' href='editCompte.php?id=".$idEdit."'>Modifier mon compte</a></li>
 			<li><a class='dropdown-item' href='logout.php'>Déconnexion</a></li>
 			</ul>
 		</div>

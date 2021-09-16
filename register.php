@@ -48,7 +48,7 @@ session_start();
 
                     if ($insert_stmt->execute()) {
                         $registerMsg = "Inscription validée. Redirection vers la page Connexion.";
-                        header("refresh:2; login.php");
+                        header("refresh:1; login.php");
                     }
                 }
             } catch (PDOException $e) {

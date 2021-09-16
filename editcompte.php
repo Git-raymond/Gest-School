@@ -5,7 +5,10 @@ session_start();
 <?= template_header('Modification Compte') ?>
 
 <?php
-
+if (!isset($_SESSION['type'])) {
+    header('Location:register.php');
+    exit();
+}
 require_once "connexion.php";
 
 if (isset($_REQUEST['id'])) {
@@ -111,21 +114,21 @@ if (isset($_REQUEST['btn_update'])) {
                                 <div class="form-group mt-3">
                                     <label class="col-sm-3 control-label">Nom</label>
                                     <div class="col-sm-12">
-                                        <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                                        <input required type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Email</label>
                                     <div class="col-sm-12">
-                                        <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
+                                        <input required type="text" name="email" class="form-control" value="<?php echo $email; ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Mot de passe</label>
                                     <div class="col-sm-12">
-                                        <input type="text" name="password" class="form-control" value="<?php echo $password; ?>">
+                                        <input required type="password" name="password" class="form-control" value="">
                                     </div>
                                 </div>
 

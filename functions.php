@@ -1,4 +1,5 @@
 <?php
+
 // fonction de connexion 
 function pdo_connect_mysql()
 {
@@ -21,7 +22,7 @@ function template_header($title)
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>'.$title.'</title>
+		<title>' . $title . '</title>
 		<link href="style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -66,15 +67,30 @@ function template_header($title)
 
 	if (isset($_SESSION['type'])) {
 
-		if ($_SESSION['type'] == 'admin'){echo "<a href='indexadmin.php'><i class='fas fa-tools'></i>Espace Admin</a>";}
+		if ($_SESSION['type'] == 'admin') {
+			echo "<a href='indexadmin.php'><i class='fas fa-tools'></i>Espace Admin</a>";
+		}
 
-		if ($_SESSION['type'] == 'famille'){echo "<a href='indexfamille.php'><i class='fas fa-users'></i>Espace Famille</a>";}
+		if ($_SESSION['type'] == 'famille') {
+			echo "<a href='indexfamille.php'><i class='fas fa-users'></i>Espace Famille</a>";
+			echo "<div class='dropdown'>
+			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
+				Comptes des élèves
+			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+			echo "<li><a class='dropdown-item' href='rechercheeleve.php'>Recherche des élèves</a></li>";
+			echo "<li><a class='dropdown-item' href='ajouteleve.php'>Ajouter un élève</a></li>";
+			echo "<li><a class='dropdown-item' href='listeeleve.php'>Liste des élèves</a></li></ul></div>";
+		}
 
-		if ($_SESSION['type'] == 'eleve'){echo "<a href='indexeleve.php'><i class='fas fa-user-graduate'></i>Espace Elève</a>";}
+		if ($_SESSION['type'] == 'eleve') {
+			echo "<a href='indexeleve.php'><i class='fas fa-user-graduate'></i>Espace Elève</a>";
+		}
 
-		if ($_SESSION['type'] == 'enseignant'){echo "<a href='indexenseignant.php'><i class='fas fa-chalkboard-teacher'></i>Espace Enseignant</a>";}
+		if ($_SESSION['type'] == 'enseignant') {
+			echo "<a href='indexenseignant.php'><i class='fas fa-chalkboard-teacher'></i>Espace Enseignant</a>";
+		}
 
-		if ($_SESSION['type'] == 'admin' OR $_SESSION['type'] == 'famille' OR $_SESSION['type'] == 'eleve' OR $_SESSION['type'] == 'enseignant') {
+		if ($_SESSION['type'] == 'admin' or $_SESSION['type'] == 'famille' or $_SESSION['type'] == 'eleve' or $_SESSION['type'] == 'enseignant') {
 			$idEdit = $_SESSION['id'];
 			echo " 
 			<nav id='navbar' class='navbar'>		
@@ -85,7 +101,7 @@ function template_header($title)
 			Mon Compte
 		</a>
 		<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
-			<li><a class='dropdown-item' href='editcompte.php?id=".$idEdit."'>Modifier mon compte</a></li>
+			<li><a class='dropdown-item' href='editcompte.php?id=" . $idEdit . "'>Modifier mon compte</a></li>
 			<li><a class='dropdown-item' href='logout.php'>Déconnexion</a></li>
 			</ul>
 		</div>
@@ -94,7 +110,31 @@ function template_header($title)
 		</header>
 		";
 		}
-		
+		if ($_SESSION['type'] == 'admin') {
+			echo "<nav id='navbar' class='navbar d-flex justify-content-center'>";	
+			echo "<div class='dropdown'>
+			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
+				Comptes des enseignants
+			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+			echo "<li><a class='dropdown-item' href='rechercheprof.php'>Recherche des enseignants</a></li>";
+			echo "<li><a class='dropdown-item' href='ajoutprof.php'>Nouvel enseignant</a></li>";
+			echo "<li><a class='dropdown-item' href='listeprof.php'>Liste des enseignants</a></li></ul></div>";
+			echo "<div class='dropdown'>
+			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
+				Cursus de formation
+			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+			echo "<li><a class='dropdown-item' href='recherchecursus.php'>Recherche des cursus</a></li>";
+			echo "<li><a class='dropdown-item' href='ajoutcursus.php'>Nouveau cursus</a></li>";
+			echo "<li><a class='dropdown-item' href='listecursus.php'>Liste des cursus</a></li></ul></div>";
+			echo "<div class='dropdown'>
+			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
+				Comptes des élèves
+			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+			echo "<li><a class='dropdown-item' href='rechercheeleve.php'>Recherche des élèves</a></li>";
+			echo "<li><a class='dropdown-item' href='listeeleve.php'>Liste des élèves</a></li></ul></div>";
+			echo "</nav>";
+		}
+	
 	} else {
 		echo '
 		<nav id="navbar" class="navbar">
@@ -278,5 +318,3 @@ function deleteUser($id)
 		echo $e->getMessage();
 	}
 }
-
-

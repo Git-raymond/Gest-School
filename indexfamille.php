@@ -59,9 +59,10 @@ if (isset($_SESSION['famille_login'])) {
 </style>
 
 <body onLoad="document.fo.login.focus()">
+    <br><br><br>
     <h2 class="text-center mt-5 mb-5"><?php echo $bienvenue ?></h2>
     <div class="text-center"> [ <a href="logout.php">Se déconnecter</a> ] </div>
-    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br>
 </body>
 
 </html>

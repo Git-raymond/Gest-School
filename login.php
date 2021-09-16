@@ -111,21 +111,20 @@ session_start();
                 <h1 class="box-title mb-3 text-secondary">Connexion</h1>
                 <div class="margin-input">
                     <select class="mt-3 mb-3" name="type">
-                        <option value="" selected="selected">- Select Rôle -</option>
-                        <option value="admin">Admin</option>
+                        <option selected="selected" value="admin">Admin</option>
                         <option value="famille">Famille</option>
                         <option value="eleve">Elève</option>
                         <option value="enseignant">Enseignant</option>
                     </select>
                 </div>
                 <div class="margin-input">
-                    <input type="text" class="box-input mb-3 rounded" name="username" required placeholder="Nom de famille">
+                    <input type="text" class="box-input mb-3 rounded" name="username" required placeholder="Nom">
                 </div>
                 <div class="margin-input">
                     <input type="password" class="box-input mb-3 rounded" name="password" required placeholder="Mot de passe">
                 </div>
                 <div class="margin-input">
-                    <input type="submit" name="valider" value="Se connecter" name="submit" class="box-button mb-3 rounded shadow">
+                    <input type="submit" name="valider" value="Se connecter" name="submit" class="box-button btn-primary mb-3 rounded shadow">
                 </div>
                 <p class="box-register p-3 rounded mx-auto">Vous êtes nouveau ici ? <a href="register.php">S'inscrire</a></p>
                 <?php if (!empty($errorMsg)) { ?>
@@ -146,4 +145,3 @@ session_start();
 <?= template_footer() ?>
 
 
-hash('sha256',$password)

@@ -13,6 +13,7 @@ function pdo_connect_mysql()
 		exit('Failed to connect to database!');
 	}
 }
+
 function template_header($title)
 {
 	echo '
@@ -64,18 +65,36 @@ function template_header($title)
 		</div>';
 
 	if (isset($_SESSION['type'])) {
-		if ($_SESSION['type'] == 'admin') {
-			$id = $_SESSION['id'];
-			echo " <div class='dropdown'>
-		<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'>
+
+		if ($_SESSION['type'] == 'admin'){echo "<a href='indexadmin.php'><i class='fas fa-tools'></i>Compte Admin</a>";}
+
+		if ($_SESSION['type'] == 'famille'){echo "<a href='indexfamille.php'><i class='fas fa-users'></i>Compte Famille</a>";}
+
+		if ($_SESSION['type'] == 'eleve'){echo "<a href='indexeleve.php'><i class='fas fa-user-graduate'></i>Compte Elève</a>";}
+
+		if ($_SESSION['type'] == 'enseignant'){echo "<a href='indexenseignant.php'><i class='fas fa-chalkboard-teacher'></i>Compte Enseignant</a>";}
+
+		if ($_SESSION['type'] == 'admin' OR $_SESSION['type'] == 'famille' OR $_SESSION['type'] == 'eleve' OR $_SESSION['type'] == 'enseignant') {
+			// $id = $_SESSION['id'];
+			echo " 
+			<nav id='navbar' class='navbar'>		
+			<a href='index.php'><i class='fas fa-home'></i>Accueil</a>
+        	<i class='bi bi-list mobile-nav-toggle'></i>
+			<div class='dropdown'>
+		<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'><i class='fas fa-user'></i>
 			Mon Compte
 		</a>
 		<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
-			<li><a class='dropdown-item' href='editCompte.php?id=$id'>Modifier mon compte</a></li>
+			<li><a class='dropdown-item' href='editCompte.php?id='>Modifier mon compte</a></li>
 			<li><a class='dropdown-item' href='logout.php'>Déconnexion</a></li>
-		</ul>
-	</div>";
+			</ul>
+		</div>
+		</nav>
+		</div>
+		</header>
+		";
 		}
+		
 	} else {
 		echo '
 		<nav id="navbar" class="navbar">
@@ -261,37 +280,3 @@ function deleteUser($id)
 }
 
 
-// login
-function authentification($username, $password)
-{
-	try {
-
-		session_start();  // démarrage d'une session
-
-		// on vérifie que les données du formulaire sont présentes
-		if (isset($_POST['username']) && isset($_POST['password'])) {
-
-			$bdd = pdo_connect_mysql();
-			// cette requête permet de récupérer l'utilisateur depuis la BD
-			$requete = "SELECT * FROM comptes WHERE username=? AND password=?";
-
-			$resultat = $bdd->prepare($requete);
-			//$login = $_POST['username'];
-			//$mdp = $_POST['password'];
-			$resultat->execute(array($username, $password));
-
-			if ($resultat->rowCount() == 1) {
-				// l'utilisateur existe dans la table
-				// on ajoute ses infos en tant que variables de session
-				$_SESSION['username'] = $username;
-				$_SESSION['password'] = $password;
-				// cette variable indique que l'authentification a réussi
-				$_SESSION['type'] == 'admin';
-				header('Location: indexadmin.php');
-				exit;
-			}
-		}
-	} catch (PDOException $e) {
-		echo $e->getMessage();
-	}
-}

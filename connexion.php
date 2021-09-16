@@ -1,33 +1,13 @@
 <?php
-include 'functions.php';
-$pdo = pdo_connect_mysql();
-$msg = '';
-// Check if POST data is not empty
-if (!empty($_POST)) {
-    
-}
+$db_host="localhost"; //localhost seerver
+$db_user="root"; //database username
+$db_password="root"; //database password
+$db_name="gestschool"; //database name
+   try{
+      $db=new PDO("mysql:host={$db_host};dbname={$db_name}",$db_user,$db_password);
+      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   }
+   catch(PDOException $e){
+      echo $e->getMessage();
+   }
 ?>
-
-<?=template_header('Create')?>
-
-<div class="content update">
-	<h2 class="text-center">Connexion</h2>
-    <form action="authentification.php" method="post">
-       
-        <label for="name">Login</label>
-        <input type="text" name="login" placeholder="" value="" id="login">
-      
-        <label for="email">Password</label>
-        <input type="password" name="mdp" placeholder="" id="password">
-        
-        <input type="submit" value="Connectez-vous">
-		
-    </form>
-	 <label for="email"><a href=""> | Mot de passe oublié | </a><a href="create.php">Inscrivez-vous |</a></label>
-    <?php if ($msg): ?>
-    <p><?=$msg?></p>
-    <?php endif; ?>
-</div>
-<br><br>
-
-<?=template_footer()?>

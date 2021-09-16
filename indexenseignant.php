@@ -2,35 +2,35 @@
 include 'functions.php';
 session_start();
 ?>
-<?= template_header('Accueil Admin') ?>
+<?= template_header('Accueil Enseignant') ?>
 
 
 <?php
 
-if (!isset($_SESSION['admin_login'])) {
+if (!isset($_SESSION['enseignant_login'])) {
     header("location:login.php");
 }
-if (isset($_SESSION['famille_login'])) {
-    header("location:indexfamille.php");
+if (isset($_SESSION['admin_login'])) {
+    header("location:indexadmin.php");
 }
 if (isset($_SESSION['eleve_login'])) {
     header("location:indexeleve.php");
 }
-if (isset($_SESSION['enseignant_login'])) {
-    header("location:indexenseignant.php");
+if (isset($_SESSION['famille_login'])) {
+    header("location:indexfamille.php");
 }
 
-if (isset($_SESSION['admin_login'])) {
+if (isset($_SESSION['enseignant_login'])) {
 
 
     if (date("H") < 18)
         $bienvenue = "Bonjour et bienvenue <a class='username'>" .
-            $_SESSION["admin_login"] .
-            "</a> dans votre espace admin";
+            $_SESSION["enseignant_login"] .
+            "</a> dans votre espace enseignant";
     else
         $bienvenue = "Bonsoir et bienvenue <a class='username'>" .
-            $_SESSION["admin_login"] .
-            "</a>  dans votre espace admin";
+            $_SESSION["enseignant_login"] .
+            "</a>  dans votre espace enseignant";
 }
 ?>
 

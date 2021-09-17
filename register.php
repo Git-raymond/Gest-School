@@ -168,10 +168,10 @@ session_start();
 
                 <p class="box-register p-3 rounded mx-auto">Déjà inscrit ? <a href="login.php">Connectez-vous ici</a></p>
                 <?php if (!empty($errorMsg)) { ?>
-                    <p class="text-danger"><?php echo $errorMsg; ?></p>
+                    <p class="text-center text-danger"><?php echo $errorMsg; ?></p>
                 <?php } ?>
                 <?php if (!empty($registerMsg)) { ?>
-                    <p class="text-success"><?php echo $registerMsg; ?></p>
+                    <p class="text-center text-success"><?php echo $registerMsg; ?></p>
                 <?php } ?>
             </form>
         </div>

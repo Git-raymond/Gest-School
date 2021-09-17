@@ -128,10 +128,10 @@ session_start();
                 </div>
                 <p class="box-register p-3 rounded mx-auto">Vous êtes nouveau ici ? <a href="register.php">S'inscrire</a></p>
                 <?php if (!empty($errorMsg)) { ?>
-                    <p class="text-danger"><?php echo $errorMsg; ?></p>
+                    <p class="text-center text-danger"><?php echo $errorMsg; ?></p>
                 <?php } ?>
                 <?php if (!empty($loginMsg)) { ?>
-                    <p class="text-success"><?php echo $loginMsg; ?></p>
+                    <p class="text-center text-success"><?php echo $loginMsg; ?></p>
                 <?php } ?>
             </form>
         </div>

@@ -1,19 +1,18 @@
 <?php
 
 // fonction de connexion 
-function pdo_connect_mysql()
-{
-	$DATABASE_HOST = 'localhost';
-	$DATABASE_USER = 'root';
-	$DATABASE_PASS = 'root';
-	$DATABASE_NAME = 'gestschool';
-	try {
-		return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
-	} catch (PDOException $exception) {
-		// If there is an error with the connection, stop the script and display the error.
-		exit('Failed to connect to database!');
-	}
-}
+// function pdo_connect_mysql()
+// {
+// 	$DATABASE_HOST = 'localhost';
+// 	$DATABASE_USER = 'root';
+// 	$DATABASE_PASS = 'root';
+// 	$DATABASE_NAME = 'gestschool';
+// 	try {
+// 		return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
+// 	} catch (PDOException $exception) {
+// 		exit('Failed to connect to database!');
+// 	}
+// }
 
 function template_header($title)
 {
@@ -73,13 +72,14 @@ function template_header($title)
 
 		if ($_SESSION['type'] == 'famille') {
 			echo "<a href='indexfamille.php'><i class='fas fa-users'></i>Espace Famille</a>";
-			echo "<div class='dropdown'>
-			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
-				Comptes des élèves
+			
+			echo "<nav id='navbar' class='navbar'></i><div class='dropdown'>
+			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'><i class='fas fa-users'></i>
+				Comptes des élèves de la famille
 			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
-			echo "<li><a class='dropdown-item' href='rechercheeleve.php'>Recherche des élèves</a></li>";
-			echo "<li><a class='dropdown-item' href='ajouteleve.php'>Ajouter un élève</a></li>";
-			echo "<li><a class='dropdown-item' href='listeeleve.php'>Liste des élèves</a></li></ul></div>";
+			echo "<li><a class='dropdown-item' href='rechercheelevefamille.php'>Recherche des élèves de la famille</a></li>";
+			echo "<li><a class='dropdown-item' href='ajoutelevefamille.php'>Ajouter un élève à la famille</a></li>";
+			echo "<li><a class='dropdown-item' href='listeelevefamille.php'>Liste des élèves de la famille</a></li></ul></div>";
 		}
 
 		if ($_SESSION['type'] == 'eleve') {
@@ -256,65 +256,65 @@ EOT;
 // CRUD functions
 
 // récupere tous les users
-function getAllUsers()
-{
-	$con = pdo_connect_mysql();
-	$requete = 'SELECT * from comptes';
-	$rows = $con->query($requete);
-	return $rows;
-}
+// function getAllUsers()
+// {
+// 	$con = pdo_connect_mysql();
+// 	$requete = 'SELECT * from comptes';
+// 	$rows = $con->query($requete);
+// 	return $rows;
+// }
 
 // creer un user
-function createUser($username, $email, $type, $password)
-{
-	try {
-		$con = pdo_connect_mysql();
-		//echo $con;
-		$sql = "INSERT INTO comptes (username, email, type, password) 
-				VALUES ('$username', '$email', '$type' ,'$password')";
-		$con->exec($sql);
-	} catch (PDOException $e) {
-		echo $sql . "<br>" . $e->getMessage();
-	}
-}
+// function createUser($username, $email, $type, $password)
+// {
+// 	try {
+// 		$con = pdo_connect_mysql();
+// 		//echo $con;
+// 		$sql = "INSERT INTO comptes (username, email, type, password) 
+// 				VALUES ('$username', '$email', '$type' ,'$password')";
+// 		$con->exec($sql);
+// 	} catch (PDOException $e) {
+// 		echo $sql . "<br>" . $e->getMessage();
+// 	}
+// }
 
 //recupere un user
-function readUser($id)
-{
-	$con = pdo_connect_mysql();
-	$requete = "SELECT * from comptes where id = '$id' ";
-	$stmt = $con->query($requete);
-	$row = $stmt->fetchAll();
-	if (!empty($row)) {
-		return $row[0];
-	}
-}
+// function readUser($id)
+// {
+// 	$con = pdo_connect_mysql();
+// 	$requete = "SELECT * from comptes where id = '$id' ";
+// 	$stmt = $con->query($requete);
+// 	$row = $stmt->fetchAll();
+// 	if (!empty($row)) {
+// 		return $row[0];
+// 	}
+// }
 
 //met à jour le user
-function updateUser($id, $username, $email, $type, $password)
-{
-	try {
-		$con = pdo_connect_mysql();
-		$requete = "UPDATE utilisateurs set 
-					username = '$username',
-					email = '$email',
-					type = '$type',
-					passsword = '$password' 
-					where id = '$id' ";
-		$stmt = $con->query($requete);
-	} catch (PDOException $e) {
-		echo $e->getMessage();
-	}
-}
+// function updateUser($id, $username, $email, $type, $password)
+// {
+// 	try {
+// 		$con = pdo_connect_mysql();
+// 		$requete = "UPDATE utilisateurs set 
+// 					username = '$username',
+// 					email = '$email',
+// 					type = '$type',
+// 					passsword = '$password' 
+// 					where id = '$id' ";
+// 		$stmt = $con->query($requete);
+// 	} catch (PDOException $e) {
+// 		echo $e->getMessage();
+// 	}
+// }
 
-// suprime un user
-function deleteUser($id)
-{
-	try {
-		$con = pdo_connect_mysql();
-		$requete = "DELETE from comptes where id = '$id' ";
-		$stmt = $con->query($requete);
-	} catch (PDOException $e) {
-		echo $e->getMessage();
-	}
-}
+// supprime un user
+// function deleteUser($id)
+// {
+// 	try {
+// 		$con = pdo_connect_mysql();
+// 		$requete = "DELETE from comptes where id = '$id' ";
+// 		$stmt = $con->query($requete);
+// 	} catch (PDOException $e) {
+// 		echo $e->getMessage();
+// 	}
+// }

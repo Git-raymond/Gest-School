@@ -16,7 +16,7 @@ $select_stmt->execute();
 
 ?>
 <div class="container">
-    <h2 class="text-warning text-center mt-5 mb-3">Liste des élèves</h2>
+    <h2 class="text-warning text-center mt-5 mb-3">Liste des élèves de la famille</h2>
     <br>
     <?php
     if ($select_stmt->rowCount() > 0) {

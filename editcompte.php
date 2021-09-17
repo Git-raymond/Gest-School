@@ -33,7 +33,7 @@ if (isset($_POST['delete_id'])) {
     $delete_stmt->bindParam(':id', $id);
 
     if ($delete_stmt->execute()) {
-        $deleteMsg = "Compte supprimé avec succès";    //record update success message
+        $deleteMsg = "Compte supprimé avec succès";    
         session_destroy();
         header("refresh:2;index.php");    //refresh 3 second and redirect to index.php page
     }
@@ -159,7 +159,7 @@ if (isset($_REQUEST['btn_update'])) {
                                         }
 
                                         if ($_SESSION['type'] == 'enseignant') {
-                                            echo "<a href='indexensegnant.php' class='btn btn-primary'>Annuler</a>";
+                                            echo "<a href='indexenseignant.php' class='btn btn-primary'>Annuler</a>";
                                         }
                                         ?>
 

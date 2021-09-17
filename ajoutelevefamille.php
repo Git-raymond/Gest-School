@@ -60,7 +60,7 @@ if (isset($_REQUEST['ajouter'])) {
 
 ?>
 <form class="box text-center mt-5 mb-5" action="" method="post">
-    <h1 class="box-logo box-title text-warning">Ajouter un élève</h1>
+    <h1 class="box-logo box-title text-warning">Ajouter un élève à la famille</h1>
     <div class="text-center">
         <input type="hidden" class="box-input mb-3" name="type" value="eleve" /><br>
         <input type="text" class="box-input mb-3" name="username" placeholder="Prénom de l'élève" required /><br>

@@ -11,7 +11,7 @@ if (!isset($_SESSION['type'])) {
 }
 require_once "connexion.php";
 
-$select_stmt = $db->prepare("SELECT * FROM comptes WHERE type= 'enseignant'");
+$select_stmt = $db->prepare("SELECT * FROM cursus");
 $select_stmt->execute();
 
 ?>
@@ -23,18 +23,18 @@ $select_stmt->execute();
     ?>
         <table class="table table-bordered table-striped table-dark table-hover bg-light">
             <tr>
-                <td>Username</td>
-                <td>Email</td>
+                <td>Matière</td>
+                <td>Année scolaire</td>
                 <td width="70px">EDIT</td>
             </tr>
             <?php
             while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<form action='' method='POST'>";
-                echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
+                echo "<input type='hidden' value='" . $row['idCursus'] . "'  />";
                 echo "<tr>";
-                echo "<td>" . $row['username'] . "</td>";
-                echo "<td>" . $row['email'] . "</td>";
-                echo "<td><a href='editcompte.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
+                echo "<td>" . $row['matiere'] . "</td>";
+                echo "<td>" . $row['annee'] . "</td>";
+                echo "<td><a href='editmatiere.php?id=" . $row['idCursus'] . "' class='btn btn-info'>Edit</a></td>";
                 echo "</tr>";
                 echo "</form>";
             }
@@ -44,7 +44,7 @@ $select_stmt->execute();
 <br><br>
 <?php
     } else {
-        echo "<br><br><div class='text-center text-primary'><p>Aucun enseignant inscrit</p></div>";
+        echo "<br><br><div class='text-center text-primary'><p>Aucun cursus enregistré</p></div>";
     }
 ?>
 </body>

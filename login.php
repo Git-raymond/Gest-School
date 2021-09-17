@@ -25,7 +25,7 @@ session_start();
     if (isset($_REQUEST['valider'])) {
         $username = $_REQUEST['username'];
         $type = $_REQUEST['type'];
-        $password = hash('sha256',$_REQUEST['password']);
+        $password = hash('sha256', $_REQUEST['password']);
 
         if (empty($username)) {
             $errorMsg = "Entrez votre nom";
@@ -35,7 +35,7 @@ session_start();
             $errorMsg = "Sélectionner votre rôle";
         } else if ($username and $password and $type) {
             try {
-                $select_stmt = $db->prepare("SELECT id, username, type, password FROM comptes WHERE username=:uusername AND type=:utype AND password=:upassword");
+                $select_stmt = $db->prepare("SELECT id, username, type, password, status FROM comptes WHERE username=:uusername AND type=:utype AND password=:upassword");
                 // $select_stmt->bindParam(":uid", $id);
                 $select_stmt->bindParam(":uusername", $username);
                 $select_stmt->bindParam(":utype", $type);
@@ -47,54 +47,60 @@ session_start();
                     $dbusername = $row["username"];
                     $dbtype = $row["type"];
                     $dbpassword = $row["password"];
+                    $dbstatus = $row["status"];
                 }
+
                 if ($username != null and $password != null and $type != null) {
                     if ($select_stmt->rowCount() > 0) {
-                        if ($username == $dbusername and $password == $dbpassword and $type == $dbtype) {
-                            switch ($dbtype) {
-                                case "admin":
-                                    $_SESSION["admin_login"] = $username;
-                                    $_SESSION['type'] = $type;
-                                    $_SESSION['id'] = $id;
-                                    $loginMsg = "Redirection vers compte Admin";
-                                    header("refresh:1;indexadmin.php");
-                                    break;
-
-                                case "famille":
-                                    $_SESSION["famille_login"] = $username;
-                                    $_SESSION['type'] = $type;
-                                    $_SESSION['id'] = $id;
-                                    $loginMsg = "Redirection vers compte Famille";
-                                    header("refresh:1;indexfamille.php");
-                                    break;
-
-                                case "eleve":
-                                    $_SESSION["eleve_login"] = $username;
-                                    $_SESSION['type'] = $type;
-                                    $_SESSION['id'] = $id;
-                                    $loginMsg = "Redirection vers compte Elève";
-                                    header("refresh:1;indexeleve.php");
-                                    break;
-
-                                case "enseignant":
-                                    $_SESSION["enseignant_login"] = $username;
-                                    $_SESSION['type'] = $type;
-                                    $_SESSION['id'] = $id;
-                                    $loginMsg = "Redirection vers compte Enseignant";
-                                    header("refresh:2;indexenseignant.php");
-                                    break;
-
-                                default:
-                                    $errorMsg= "Le rôle/nom/mot de passse est incorrect";
-                            }
+                        if ($dbstatus == 0) {
+                            $errorMsg = "Connexion interdite. Votre compte a été désactivé.";
                         } else {
-                            $errorMsg= "Le rôle/nom/mot de passse est incorrect";
+                            if ($username == $dbusername and $password == $dbpassword and $type == $dbtype) {
+                                switch ($dbtype) {
+                                    case "admin":
+                                        $_SESSION["admin_login"] = $username;
+                                        $_SESSION['type'] = $type;
+                                        $_SESSION['id'] = $id;
+                                        $loginMsg = "Redirection vers compte Admin";
+                                        header("refresh:1;indexadmin.php");
+                                        break;
+
+                                    case "famille":
+                                        $_SESSION["famille_login"] = $username;
+                                        $_SESSION['type'] = $type;
+                                        $_SESSION['id'] = $id;
+                                        $loginMsg = "Redirection vers compte Famille";
+                                        header("refresh:1;indexfamille.php");
+                                        break;
+
+                                    case "eleve":
+                                        $_SESSION["eleve_login"] = $username;
+                                        $_SESSION['type'] = $type;
+                                        $_SESSION['id'] = $id;
+                                        $loginMsg = "Redirection vers compte Elève";
+                                        header("refresh:1;indexeleve.php");
+                                        break;
+
+                                    case "enseignant":
+                                        $_SESSION["enseignant_login"] = $username;
+                                        $_SESSION['type'] = $type;
+                                        $_SESSION['id'] = $id;
+                                        $loginMsg = "Redirection vers compte Enseignant";
+                                        header("refresh:1;indexenseignant.php");
+                                        break;
+
+                                    default:
+                                        $errorMsg = "Le rôle/nom/mot de passse est incorrect";
+                                }
+                            } else {
+                                $errorMsg = "Le rôle/nom/mot de passse est incorrect";
+                            }
                         }
                     } else {
-                        $errorMsg= "Le rôle/nom/mot de passse est incorrect";
+                        $errorMsg = "Le rôle/nom/mot de passse est incorrect";
                     }
                 } else {
-                    $errorMsg= "Le rôle/nom/mot de passse est incorrect";
+                    $errorMsg = "Le rôle/nom/mot de passse est incorrect";
                 }
             } catch (PDOException $e) {
                 $e->getMessage();
@@ -143,5 +149,3 @@ session_start();
 
 
 <?= template_footer() ?>
-
-

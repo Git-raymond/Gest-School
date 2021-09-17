@@ -12,13 +12,13 @@ if (!isset($_SESSION['type'])) {
 require_once "connexion.php";
 ?>
 
-<h2 class="text-center text-primary mt-5 mb-5">Recherche des enseignants</h2>
+<h2 class="text-center text-warning mt-5 mb-5">Recherche des enseignants</h2>
 
 <!-- <div class="container"> -->
 <form action='' method='POST'>
     <div class='container mx-5 px-5 mb-5'>
         <span class='glyphicon glyphicon-search form-control-feedback'></span>
-        <input name='recherche' type='text' class='text-center form-control' placeholder="Tapez votre recherche selon le Nom ou l'Email de l'enseignant">
+        <input name='recherche' type='text' class='text-center form-control' placeholder="Recherche selon le Nom, l'Email ou le statut (actif=1, nul=0) de l'enseignant">
     </div>
 </form>
 <!-- <div> -->
@@ -28,7 +28,7 @@ require_once "connexion.php";
 // Récupère la recherche
 if (isset($_POST['recherche'])) {
     $recherche = $_POST['recherche'];
-    $select_stmt = $db->prepare("SELECT username, email FROM comptes WHERE type='enseignant' AND username LIKE '%$recherche%' OR type='enseignant' AND email LIKE '%$recherche%'");
+    $select_stmt = $db->prepare("SELECT username, email, status FROM comptes WHERE type='enseignant' AND username LIKE '%$recherche%' OR type='enseignant' AND email LIKE '%$recherche%' OR type='enseignant' AND status LIKE '%$recherche%'");
     $select_stmt->execute();
 
     // affichage du résultat
@@ -40,8 +40,9 @@ if (isset($_POST['recherche'])) {
     } else {
 ?>
         <tr>
-            <td>Username</td>
+            <td>Nom</td>
             <td>Email</td>
+            <td>Statut (1=actif, 0=nul)</td>
         </tr>
 <?php
         while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -49,6 +50,7 @@ if (isset($_POST['recherche'])) {
             echo "<tr>";
             echo "<td>" . $row['username'] . "</td>";
             echo "<td>" . $row['email'] . "</td>";
+            echo "<td>" . $row['status'] . "</td>";
             echo "</tr>";
             echo "</form>";
         }

@@ -16,15 +16,16 @@ $select_stmt->execute();
 
 ?>
 <div class="container">
-    <h2 class="text-primary text-center mt-5 mb-3">Liste des enseignants</h2>
+    <h2 class="text-warning text-center mt-5 mb-3">Liste des enseignants</h2>
     <br>
     <?php
     if ($select_stmt->rowCount() > 0) {
     ?>
         <table class="table table-bordered table-striped table-dark table-hover bg-light">
             <tr>
-                <td>Username</td>
+                <td>Nom</td>
                 <td>Email</td>
+                <td>Statut (1=actif, 0=nul)</td>
                 <td width="70px">EDIT</td>
             </tr>
             <?php
@@ -34,6 +35,7 @@ $select_stmt->execute();
                 echo "<tr>";
                 echo "<td>" . $row['username'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
+                echo "<td>" . $row['status'] . "</td>";
                 echo "<td><a href='editcompte.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
                 echo "</tr>";
                 echo "</form>";
@@ -44,7 +46,7 @@ $select_stmt->execute();
 <br><br>
 <?php
     } else {
-        echo "<br><br><div class='text-center text-primary'><p>Aucun enseignant inscrit</p></div>";
+        echo "<br><br><div class='text-center text-danger'><p>Aucun enseignant inscrit</p></div>";
     }
 ?>
 </body>

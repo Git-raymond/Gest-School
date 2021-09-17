@@ -16,7 +16,7 @@ $select_stmt->execute();
 
 ?>
 <div class="container">
-    <h2 class="text-primary text-center mt-5 mb-3">Liste des cursus</h2>
+    <h2 class="text-warning text-center mt-5 mb-3">Liste des cursus</h2>
     <br>
     <?php
     if ($select_stmt->rowCount() > 0) {
@@ -44,7 +44,7 @@ $select_stmt->execute();
 <br><br>
 <?php
     } else {
-        echo "<br><br><div class='text-center text-primary'><p>Aucun cursus enregistré</p></div>";
+        echo "<br><br><div class='text-center text-danger'><p>Aucun cursus enregistré</p></div>";
     }
 ?>
 </body>

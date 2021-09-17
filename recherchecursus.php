@@ -12,7 +12,7 @@ if (!isset($_SESSION['type'])) {
 require_once "connexion.php";
 ?>
 
-<h2 class="text-center text-primary mt-5 mb-5">Recherche des cursus</h2>
+<h2 class="text-center text-warning mt-5 mb-5">Recherche des cursus</h2>
 
 <!-- <div class="container"> -->
 <form action='' method='POST'>

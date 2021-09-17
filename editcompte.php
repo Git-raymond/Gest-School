@@ -44,6 +44,7 @@ if (isset($_REQUEST['btn_update'])) {
     $username = $_REQUEST['username'];
     $email = $_REQUEST['email'];
     $password = hash('sha256', $_REQUEST['password']);
+    $status = $_REQUEST['status'];
 
     if (empty($username)) {
         $errorMsg = "Entrez votre nom";
@@ -54,15 +55,16 @@ if (isset($_REQUEST['btn_update'])) {
     } else {
         try {
             if (!isset($errorMsg)) {
-                $update_stmt = $db->prepare('UPDATE comptes SET username=:uusername, email=:uemail, password=:upassword WHERE id=:uid'); //sql update query
+                $update_stmt = $db->prepare('UPDATE comptes SET username=:uusername, email=:uemail, password=:upassword, status=:ustatus WHERE id=:uid'); //sql update query
                 $update_stmt->bindParam(':uusername', $username);
                 $update_stmt->bindParam(':uemail', $email);
                 $update_stmt->bindParam(':upassword', $password);
                 $update_stmt->bindParam(':uid', $id);
+                $update_stmt->bindParam(':ustatus', $status);
 
                 if ($update_stmt->execute()) {
                     $updateMsg = "Compte modifié avec succès";    //record update success message
-                    header("refresh:3;index.php");    //refresh 3 second and redirect to index.php page
+                    // header("refresh:3;index.php");    //refresh 3 second and redirect to index.php page
                 }
             }
         } catch (PDOException $e) {
@@ -106,10 +108,18 @@ if (isset($_REQUEST['btn_update'])) {
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 mx-auto">
                     <div class="box text-center text-primary mb-5">
-                        <h3 class="text-primary mt-5">Modification des informations du compte</h3>
-                        <form action="" method="POST">
+                        <h3 class="text-warning mt-5">Modification des informations du compte</h3>
 
+                        <br>
                             <form method="post">
+
+                                <label class="col-sm-3 control-label">Statut</label>
+                                <div class="col-sm-12">
+                                    <select class="mt-3 mb-3" name="status">
+                                        <option selected="selected" value=1>Activé</option>
+                                        <option value=0>Désactivé</option>
+                                    </select>
+                                </div>
 
                                 <div class="form-group mt-3">
                                     <label class="col-sm-3 control-label">Nom</label>

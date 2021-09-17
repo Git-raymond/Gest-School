@@ -99,8 +99,7 @@ if (isset($_REQUEST['btn_update'])) {
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 mx-auto">
                     <div class="box text-center text-primary mb-5">
-                        <h3 class="text-primary mt-5">Modification des informations du cursus</h3>
-                        <form action="" method="POST">
+                        <h3 class="text-warning mt-5">Modification des informations du cursus</h3>
 
                             <form method="post">
 

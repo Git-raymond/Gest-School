@@ -45,12 +45,12 @@ if (isset($_REQUEST['ajouter'])) {
 
 ?>
 <form class="box text-center mt-5 mb-5" action="" method="post">
-    <h1 class="box-logo box-title text-primary">AJOUTER UN CURSUS</h1>
+    <h1 class="box-logo box-title text-warning">AJOUTER UN CURSUS</h1>
     <div class="text-center">
         <br>
         <input type="text" class="box-input mb-3" name="matiere" placeholder="Matière" required /><br>
         <input type="text" class="box-input mb-3" name="annee" placeholder="Année scolaire" required /><br>
-        <input type="submit" name="ajouter" value="Ajouter" class="box-button btn-primary" />
+        <input type="submit" name="ajouter" value="Ajouter" class="box-button btn-primary btn" />
     </div>
 </form>
 <?php if (!empty($errorMsg)) { ?>

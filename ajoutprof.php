@@ -50,7 +50,7 @@ if (isset($_REQUEST['ajouter'])) {
 
                 $currentID = $db->lastInsertId();
 
-                $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type,enseignant_id ) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
+                $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type, enseignant_id ) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
                 $insert_stmt->bindParam(":uusername", $username);
                 $insert_stmt->bindParam(":uemail", $email);
                 $insert_stmt->bindParam(":upassword", $password);

@@ -12,9 +12,8 @@ if (!isset($_SESSION['type'])) {
 require_once "connexion.php";
 
 if (isset($_REQUEST['ajouter'])) {
-    $famille_id = $_SESSION['famille_id'];
-    $username = $_REQUEST['username'];
     $eleve = $_REQUEST['eleve'];
+    $username = $_REQUEST['username'];
     $frais = $_REQUEST['frais'];
     $email = $_REQUEST['email'];
     $type = $_REQUEST['type'];
@@ -34,9 +33,7 @@ if (isset($_REQUEST['ajouter'])) {
         $errorMsg = "Le mot de passe doit contenir au moins 5 caractères";
     } else {
         try {
-
-            $select_stmt = $db->prepare("SELECT id, username, email FROM comptes WHERE id=:uid OR username=:uusername OR email=:uemail");
-            $select_stmt->bindParam(":uid", $id);
+            $select_stmt = $db->prepare("SELECT username, email FROM comptes WHERE username=:uusername OR email=:uemail");
             $select_stmt->bindParam(":uusername", $username);
             $select_stmt->bindParam(":uemail", $email);
             $select_stmt->execute();
@@ -49,16 +46,14 @@ if (isset($_REQUEST['ajouter'])) {
                     $errorMsg = "L'adresse email existe déjà. En choisir une autre.";
                 }
             } else if (!isset($errorMsg)) {
-
-                $insert_stmt = $db->prepare("INSERT INTO eleve (eleve, frais, famille_id) VALUES(:ueleve, :ufrais, :ufamille_id)");
+                $insert_stmt = $db->prepare("INSERT INTO eleve (eleve, frais) VALUES(:ueleve, :ufrais)");
                 $insert_stmt->bindParam(":ueleve", $eleve);
                 $insert_stmt->bindParam(":ufrais", $frais);
-                $insert_stmt->bindParam(":ufamille_id", $famille_id);
                 $insert_stmt->execute();
 
                 $currentID = $db->lastInsertId();
 
-                $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type, famille_id) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
+                $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type, eleve_id ) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
                 $insert_stmt->bindParam(":uusername", $username);
                 $insert_stmt->bindParam(":uemail", $email);
                 $insert_stmt->bindParam(":upassword", $password);

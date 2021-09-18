@@ -10,6 +10,7 @@ session_start();
 
     <?php
     if (isset($_REQUEST['valider'])) {
+        $famille = $_REQUEST['famille'];
         $username = $_REQUEST['username'];
         $email = $_REQUEST['email'];
         $type = $_REQUEST['type'];
@@ -40,7 +41,13 @@ session_start();
                         $errorMsg = "L'adresse email existe déjà. En choisir une autre.";
                     }
                 } else if (!isset($errorMsg)) {
-                    $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type) VALUES(:uusername, :uemail, :upassword, :utype)");
+                    $insert_stmt = $db->prepare("INSERT INTO famille (famille) VALUES(:ufamille)");
+                    $insert_stmt->bindParam(":ufamille", $famille);
+                    $insert_stmt->execute();
+
+                    $currentID = $db->lastInsertId();
+
+                    $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type, famille_id) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
                     $insert_stmt->bindParam(":uusername", $username);
                     $insert_stmt->bindParam(":uemail", $email);
                     $insert_stmt->bindParam(":upassword", $password);
@@ -57,7 +64,6 @@ session_start();
         }
     }
 
-
     ?>
     <div class="container">
         <div class="jumbotron text-center">
@@ -66,8 +72,8 @@ session_start();
                 <h1 class="box-title mb-3 text-secondary">Inscription</h1>
                 <br>
                 <div class="margin-input">
-                    <input type="hidden" class="box-input mb-3 rounded" name="type" placeholder="Type" value="famille">
-                    </select>
+                    <input type="hidden" class="box-input mb-3 rounded" name="type" placeholder="famille" value="famille">
+                    <input type="hidden" class="box-input mb-3 rounded" name="famille" placeholder="famille" value="famille">
                 </div>
                 <div class="margin-input">
                     <input type="text" class="box-input mb-3 rounded" name="username" placeholder="Nom de famille">

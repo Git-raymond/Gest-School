@@ -123,6 +123,7 @@ function template_header($title)
 			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
 				Cursus de formation
 			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+			echo "<li><a class='dropdown-item' href='cursusenseignant.php'>Attribuer les cursus</a></li>";
 			echo "<li><a class='dropdown-item' href='recherchecursus.php'>Recherche des cursus</a></li>";
 			echo "<li><a class='dropdown-item' href='ajoutcursus.php'>Nouveau cursus</a></li>";
 			echo "<li><a class='dropdown-item' href='listecursus.php'>Liste des cursus</a></li></ul></div>";

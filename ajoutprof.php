@@ -12,6 +12,7 @@ if (!isset($_SESSION['type'])) {
 require_once "connexion.php";
 
 if (isset($_REQUEST['ajouter'])) {
+    $enseignant = $_REQUEST['enseignant'];
     $username = $_REQUEST['username'];
     $email = $_REQUEST['email'];
     $type = $_REQUEST['type'];
@@ -42,7 +43,14 @@ if (isset($_REQUEST['ajouter'])) {
                     $errorMsg = "L'adresse email existe déjà. En choisir une autre.";
                 }
             } else if (!isset($errorMsg)) {
-                $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type) VALUES(:uusername, :uemail, :upassword, :utype)");
+
+                $insert_stmt = $db->prepare("INSERT INTO enseignant (enseignant) VALUES(:uenseignant)");
+                $insert_stmt->bindParam(":uenseignant", $enseignant);
+                $insert_stmt->execute();
+
+                $currentID = $db->lastInsertId();
+
+                $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type,enseignant_id ) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
                 $insert_stmt->bindParam(":uusername", $username);
                 $insert_stmt->bindParam(":uemail", $email);
                 $insert_stmt->bindParam(":upassword", $password);
@@ -63,6 +71,8 @@ if (isset($_REQUEST['ajouter'])) {
     <h1 class="box-logo box-title text-warning">Ajouter un enseignant</h1>
     <div class="text-center">
         <input type="hidden" class="box-input mb-3" name="type" value="enseignant" /><br>
+        <input type="hidden" class="box-input mb-3" name="enseignant" value="enseignant" /><br>
+
         <input type="text" class="box-input mb-3" name="username" placeholder="Nom de l'enseignant" required /><br>
         <input type="text" class="box-input mb-3" name="email" placeholder="Email" required /><br>
         <input type="password" class="box-input mb-3" name="password" placeholder="Mot de passe" required /><br>

@@ -1,8 +1,9 @@
 <?php
 include 'functions.php';
 session_start();
+$famille_id = $_SESSION['famille_id'];
 ?>
-<?= template_header('Liste élèves') ?>
+<?= template_header('Liste élèves famille') ?>
 
 <?php
 if (!isset($_SESSION['type'])) {
@@ -11,7 +12,7 @@ if (!isset($_SESSION['type'])) {
 }
 require_once "connexion.php";
 
-$select_stmt = $db->prepare("SELECT * FROM comptes WHERE type='eleve'");
+$select_stmt = $db->prepare("SELECT * FROM comptes WHERE type='eleve' AND famille_id=$famille_id");
 $select_stmt->execute();
 
 ?>

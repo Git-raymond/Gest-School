@@ -35,7 +35,7 @@ session_start();
             $errorMsg = "Sélectionner votre rôle";
         } else if ($username and $password and $type) {
             try {
-                $select_stmt = $db->prepare("SELECT id, username, type, password, status FROM comptes WHERE username=:uusername AND type=:utype AND password=:upassword");
+                $select_stmt = $db->prepare("SELECT id, username, type, password, status, famille_id, eleve_id, enseignant_id FROM comptes WHERE username=:uusername AND type=:utype AND password=:upassword");
                 // $select_stmt->bindParam(":uid", $id);
                 $select_stmt->bindParam(":uusername", $username);
                 $select_stmt->bindParam(":utype", $type);
@@ -48,6 +48,9 @@ session_start();
                     $dbtype = $row["type"];
                     $dbpassword = $row["password"];
                     $dbstatus = $row["status"];
+                    $famille_id = $row["famille_id"];
+                    $eleve_id = $row["eleve_id"];
+                    $enseignant_id = $row["enseignant_id"];
                 }
 
                 if ($username != null and $password != null and $type != null) {
@@ -69,6 +72,7 @@ session_start();
                                         $_SESSION["famille_login"] = $username;
                                         $_SESSION['type'] = $type;
                                         $_SESSION['id'] = $id;
+                                        $_SESSION['famille_id'] = $famille_id;
                                         $loginMsg = "Redirection vers compte Famille";
                                         header("refresh:1;indexfamille.php");
                                         break;

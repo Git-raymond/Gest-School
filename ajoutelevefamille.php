@@ -1,8 +1,9 @@
 <?php
 include 'functions.php';
 session_start();
+// $_SESSION['famille_id']=$famille_id;
 ?>
-<?= template_header('Ajout élève') ?>
+<?= template_header('Ajout élève famille') ?>
 
 <?php
 if (!isset($_SESSION['type'])) {
@@ -12,6 +13,7 @@ if (!isset($_SESSION['type'])) {
 require_once "connexion.php";
 
 if (isset($_REQUEST['ajouter'])) {
+    $famille_id = $_SESSION['famille_id'];
     $eleve = $_REQUEST['eleve'];
     $username = $_REQUEST['username'];
     $frais = $_REQUEST['frais'];
@@ -46,14 +48,14 @@ if (isset($_REQUEST['ajouter'])) {
                     $errorMsg = "L'adresse email existe déjà. En choisir une autre.";
                 }
             } else if (!isset($errorMsg)) {
-                $insert_stmt = $db->prepare("INSERT INTO eleve (eleve, frais) VALUES(:ueleve, :ufrais)");
+                $insert_stmt = $db->prepare("INSERT INTO eleve (eleve, frais, famille_id) VALUES(:ueleve, :ufrais, $famille_id)");
                 $insert_stmt->bindParam(":ueleve", $eleve);
                 $insert_stmt->bindParam(":ufrais", $frais);
                 $insert_stmt->execute();
 
                 $currentID = $db->lastInsertId();
 
-                $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type, eleve_id ) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
+                $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type, famille_id, eleve_id) VALUES(:uusername, :uemail, :upassword, :utype, $famille_id, $currentID)");
                 $insert_stmt->bindParam(":uusername", $username);
                 $insert_stmt->bindParam(":uemail", $email);
                 $insert_stmt->bindParam(":upassword", $password);

@@ -2,7 +2,7 @@
 include 'functions.php';
 session_start();
 ?>
-<?= template_header('Choix attribution cursus enseignant') ?>
+<?= template_header('Choix attribution cursus élève') ?>
 
 <?php
 if (!isset($_SESSION['type'])) {
@@ -11,12 +11,12 @@ if (!isset($_SESSION['type'])) {
 }
 require_once "connexion.php";
 
-$select_stmt = $db->prepare("SELECT * FROM comptes WHERE type= 'enseignant'");
+$select_stmt = $db->prepare("SELECT * FROM comptes WHERE type= 'eleve'");
 $select_stmt->execute();
 
 ?>
 <div class="container">
-    <h2 class="text-warning text-center mt-5 mb-3">Choisir l'enseignant</h2>
+    <h2 class="text-warning text-center mt-5 mb-3">Choisir l'élève</h2>
     <br>
     <?php
     if ($select_stmt->rowCount() > 0) {
@@ -36,7 +36,7 @@ $select_stmt->execute();
                 echo "<td>" . $row['username'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $row['status'] . "</td>";
-                echo "<td><a href='cursusenseignantattribution.php?id=" . $row['id'] . "' class='d-grid gap-2 col-6 mx-auto btn btn-info'>Attribuer</a></td>";
+                echo "<td><a href='cursuseleveattribution.php?id=" . $row['id'] . "' class='d-grid gap-2 col-6 mx-auto btn btn-info'>Attribuer</a></td>";
                 echo "</tr>";
                 echo "</form>";
             }
@@ -46,7 +46,7 @@ $select_stmt->execute();
 <br><br>
 <?php
     } else {
-        echo ".<br><br><div class='text-center text-danger'><p>Aucun enseignant inscrit !</p></div></div>";
+        echo ".<br><br><div class='text-center text-danger'><p>Aucun élève inscrit !</p></div></div>";
     }
 ?>
 </body>

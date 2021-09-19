@@ -127,6 +127,7 @@ function template_header($title)
 			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
 				Comptes des enseignants
 			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+			echo "<li><a class='dropdown-item' href='cursusenseignant.php'>Attribuer les cursus</a></li>";
 			echo "<li><a class='dropdown-item' href='rechercheprof.php'>Recherche des enseignants</a></li>";
 			echo "<li><a class='dropdown-item' href='ajoutprof.php'>Nouvel enseignant</a></li>";
 			echo "<li><a class='dropdown-item' href='listeprof.php'>Liste des enseignants</a></li></ul></div>";
@@ -134,7 +135,6 @@ function template_header($title)
 			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
 				Cursus de formation
 			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
-			echo "<li><a class='dropdown-item' href='cursusenseignant.php'>Attribuer les cursus</a></li>";
 			echo "<li><a class='dropdown-item' href='recherchecursus.php'>Recherche des cursus</a></li>";
 			echo "<li><a class='dropdown-item' href='ajoutcursus.php'>Nouveau cursus</a></li>";
 			echo "<li><a class='dropdown-item' href='listecursus.php'>Liste des cursus</a></li></ul></div>";
@@ -142,6 +142,7 @@ function template_header($title)
 			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
 				Comptes des élèves
 			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+			echo "<li><a class='dropdown-item' href='cursuseleve.php'>Attribuer les cursus</a></li>";
 			echo "<li><a class='dropdown-item' href='rechercheeleve.php'>Recherche des élèves</a></li>";
 			echo "<li><a class='dropdown-item' href='listeeleve.php'>Liste des élèves</a></li></ul></div>";
 			echo "</nav>";

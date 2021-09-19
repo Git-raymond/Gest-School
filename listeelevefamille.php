@@ -27,6 +27,7 @@ $select_stmt->execute();
                 <td>Prénom</td>
                 <td>Email</td>
                 <td>Statut (1=actif, 0=nul)</td>
+                <td>Notes et commentaires</td>
                 <td width="70px">EDIT</td>
             </tr>
             <?php
@@ -37,6 +38,7 @@ $select_stmt->execute();
                 echo "<td>" . $row['username'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $row['status'] . "</td>";
+                echo "<td><a href='affichenotesfamille.php?id=" . $row['eleve_id'] . "' class='btn btn-warning'>Afficher</a></td>";
                 echo "<td><a href='editcompte.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
                 echo "</tr>";
                 echo "</form>";

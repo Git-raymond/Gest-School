@@ -72,7 +72,7 @@ function template_header($title)
 
 		if ($_SESSION['type'] == 'famille') {
 			echo "<a href='indexfamille.php'><i class='fas fa-users'></i>Espace Famille</a>";
-			
+
 			echo "<nav id='navbar' class='navbar'></i><div class='dropdown'>
 			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'><i class='fas fa-users'></i>
 				Comptes des élèves de la famille
@@ -84,13 +84,24 @@ function template_header($title)
 
 		if ($_SESSION['type'] == 'eleve') {
 			echo "<a href='indexeleve.php'><i class='fas fa-user-graduate'></i>Espace Elève</a>";
+			echo " 
+			<nav id='navbar' class='navbar'>		
+			<a href='index.php'><i class='fas fa-home'></i>Accueil</a>
+        	<i class='bi bi-list mobile-nav-toggle'></i>
+				<a href='logout.php'>Déconnexion</a>
+			</ul>
+		</div>
+		</nav>
+		</div>
+		</header>
+		";
 		}
 
 		if ($_SESSION['type'] == 'enseignant') {
 			echo "<a href='indexenseignant.php'><i class='fas fa-chalkboard-teacher'></i>Espace Enseignant</a>";
 		}
 
-		if ($_SESSION['type'] == 'admin' or $_SESSION['type'] == 'famille' or $_SESSION['type'] == 'eleve' or $_SESSION['type'] == 'enseignant') {
+		if ($_SESSION['type'] == 'admin' or $_SESSION['type'] == 'famille' or $_SESSION['type'] == 'enseignant') {
 			$idEdit = $_SESSION['id'];
 			echo " 
 			<nav id='navbar' class='navbar'>		
@@ -111,7 +122,7 @@ function template_header($title)
 		";
 		}
 		if ($_SESSION['type'] == 'admin') {
-			echo "<nav id='navbar' class='navbar d-flex justify-content-center'>";	
+			echo "<nav id='navbar' class='navbar d-flex justify-content-center'>";
 			echo "<div class='dropdown'>
 			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'>
 				Comptes des enseignants
@@ -135,7 +146,6 @@ function template_header($title)
 			echo "<li><a class='dropdown-item' href='listeeleve.php'>Liste des élèves</a></li></ul></div>";
 			echo "</nav>";
 		}
-	
 	} else {
 		echo '
 		<nav id="navbar" class="navbar">

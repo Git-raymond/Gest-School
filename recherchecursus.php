@@ -28,7 +28,7 @@ require_once "connexion.php";
 // Récupère la recherche
 if (isset($_POST['recherche'])) {
     $recherche = $_POST['recherche'];
-    $select_stmt = $db->prepare("SELECT matiere, annee FROM cursus WHERE matiere LIKE '%$recherche%' OR annee LIKE '%$recherche%'");
+    $select_stmt = $db->prepare("SELECT matiere, annee, frais FROM cursus WHERE matiere LIKE '%$recherche%' OR annee LIKE '%$recherche%'");
     $select_stmt->execute();
 
     // affichage du résultat
@@ -42,6 +42,7 @@ if (isset($_POST['recherche'])) {
         <tr>
             <td>Matière</td>
             <td>Année scolaire</td>
+            <td>Montant des frais de scolarité</td>
         </tr>
 <?php
         while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -49,6 +50,7 @@ if (isset($_POST['recherche'])) {
             echo "<tr>";
             echo "<td>" . $row['matiere'] . "</td>";
             echo "<td>" . $row['annee'] . "</td>";
+            echo "<td>" . $row['frais'] . "</td>";
             echo "</tr>";
             echo "</form>";
         }

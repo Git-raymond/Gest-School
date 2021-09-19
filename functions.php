@@ -144,7 +144,8 @@ function template_header($title)
 			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
 			echo "<li><a class='dropdown-item' href='cursuseleve.php'>Attribuer les cursus</a></li>";
 			echo "<li><a class='dropdown-item' href='rechercheeleve.php'>Recherche des élèves</a></li>";
-			echo "<li><a class='dropdown-item' href='listeeleve.php'>Liste des élèves</a></li></ul></div>";
+			echo "<li><a class='dropdown-item' href='listeelevecursus.php'>Liste des élèves avec cursus</a></li>";
+			echo "<li><a class='dropdown-item' href='listeelevesanscursus.php'>Liste des élèves sans cursus</a></li></ul></div>";
 			echo "</nav>";
 		}
 	} else {

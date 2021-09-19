@@ -1,9 +1,8 @@
 <?php
 include 'functions.php';
 session_start();
-$famille_id = $_SESSION['famille_id'];
 ?>
-<?= template_header('Liste élèves famille') ?>
+<?= template_header('Liste élèves cursus') ?>
 
 <?php
 if (!isset($_SESSION['type'])) {
@@ -17,7 +16,7 @@ $select_stmt->execute();
 
 ?>
 <div class="container">
-    <h2 class="text-warning text-center mt-5 mb-3">Liste des élèves de la famille</h2>
+    <h2 class="text-warning text-center mt-5 mb-3">Liste des élèves avec cursus</h2>
     <br>
     <?php
     if ($select_stmt->rowCount() > 0) {
@@ -30,7 +29,7 @@ $select_stmt->execute();
                 <td>Matière</td>
                 <td>Année scolaire</td>
                 <td>Frais de scolarité</td>
-                <td>Notes et commentaires</td>
+                <td width="200px">CHANGER LE CURSUS</td>
                 <td width="70px">EDIT</td>
             </tr>
             <?php
@@ -44,7 +43,7 @@ $select_stmt->execute();
                 echo "<td>" . $row['matiere'] . "</td>";
                 echo "<td>" . $row['annee'] . "</td>";
                 echo "<td>" . $row['frais'] . "</td>";
-                echo "<td><a href='affichenotesfamille.php?id=" . $row['eleve_id'] . "' class='btn btn-warning'>Afficher</a></td>";
+                echo "<td><a href='cursuseleveattribution.php?id=" . $row['id'] . "' class='d-grid gap-2 col-6 mx-auto btn btn-info'>Changer</a></td>";
                 echo "<td><a href='editcompte.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
                 echo "</tr>";
                 echo "</form>";

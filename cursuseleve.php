@@ -16,14 +16,14 @@ $select_stmt->execute();
 
 ?>
 <div class="container">
-    <h2 class="text-warning text-center mt-5 mb-3">Choisir l'élève</h2>
+    <h2 class="text-warning text-center mt-5 mb-3">Liste de tous les élèves</h2>
     <br>
     <?php
     if ($select_stmt->rowCount() > 0) {
     ?>
         <table class="table table-bordered table-striped table-dark table-hover bg-light">
             <tr>
-                <td>Nom</td>
+                <td>Prénom</td>
                 <td>Email</td>
                 <td>Statut (1=actif, 0=nul)</td>
                 <td width="200px">ATTRIBUER UN CURSUS</td>

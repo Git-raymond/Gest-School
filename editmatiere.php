@@ -42,17 +42,21 @@ if (isset($_REQUEST['btn_update'])) {
 
     $matiere = $_REQUEST['matiere'];
     $annee = $_REQUEST['annee'];
+    $frais = $_REQUEST['frais'];
 
     if (empty($matiere)) {
         $errorMsg = "Entrez la matière";
     } else if (empty($annee)) {
         $errorMsg = "Entrez la date";
+    } else if (empty($frais)) {
+        $errorMsg = "Entrez le montant des frais de scolarité";
     } else {
         try {
             if (!isset($errorMsg)) {
-                $update_stmt = $db->prepare('UPDATE cursus SET matiere=:umatiere, annee=:uannee WHERE idCursus=:id'); //sql update query
+                $update_stmt = $db->prepare('UPDATE cursus SET matiere=:umatiere, annee=:uannee, frais=:ufrais WHERE idCursus=:id'); //sql update query
                 $update_stmt->bindParam(':umatiere', $matiere);
                 $update_stmt->bindParam(':uannee', $annee);
+                $update_stmt->bindParam(':ufrais', $frais);
                 $update_stmt->bindParam(':id', $id);
 
                 if ($update_stmt->execute()) {
@@ -114,6 +118,13 @@ if (isset($_REQUEST['btn_update'])) {
                                     <label class="col-sm-3 control-label">Année scolaire</label>
                                     <div class="col-sm-12">
                                         <input required type="text" name="annee" class="form-control" value="<?php echo $annee; ?>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Montant des frais de scolarité</label>
+                                    <div class="col-sm-12">
+                                        <input required type="text" name="frais" class="form-control" value="<?php echo $frais; ?>">
                                     </div>
                                 </div>
 

@@ -14,7 +14,6 @@ require_once "connexion.php";
 if (isset($_REQUEST['ajouter'])) {
     $matiere = $_REQUEST['matiere'];
     $annee = $_REQUEST['annee'];
-    $frais = $_REQUEST['frais'];
 
 
     if (empty($matiere)) {
@@ -30,10 +29,9 @@ if (isset($_REQUEST['ajouter'])) {
             $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!isset($errorMsg)) {
-                $insert_stmt = $db->prepare("INSERT INTO cursus(matiere, annee, frais) VALUES(:umatiere, :uannee, :ufrais)");
+                $insert_stmt = $db->prepare("INSERT INTO cursus(matiere, annee) VALUES(:umatiere, :uannee)");
                 $insert_stmt->bindParam(":umatiere", $matiere);
                 $insert_stmt->bindParam(":uannee", $annee);
-                $insert_stmt->bindParam(":ufrais", $frais);
 
                 if ($insert_stmt->execute()) {
                     $registerMsg = "Inscription du cursus validée.";
@@ -52,7 +50,6 @@ if (isset($_REQUEST['ajouter'])) {
         <br>
         <input type="text" class="box-input mb-3" name="matiere" placeholder="Matière" required /><br>
         <input type="text" class="box-input mb-3" name="annee" placeholder="Année scolaire" required /><br>
-        <input type="text" class="box-input mb-3" name="frais" placeholder="Frais scolarité" required /><br>
         <input type="submit" name="ajouter" value="Ajouter" class="box-button btn-primary btn" />
     </div>
 </form>

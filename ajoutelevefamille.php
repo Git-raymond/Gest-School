@@ -1,7 +1,6 @@
 <?php
 include 'functions.php';
 session_start();
-// $_SESSION['famille_id']=$famille_id;
 ?>
 <?= template_header('Ajout élève famille') ?>
 
@@ -16,7 +15,6 @@ if (isset($_REQUEST['ajouter'])) {
     $famille_id = $_SESSION['famille_id'];
     $eleve = $_REQUEST['eleve'];
     $username = $_REQUEST['username'];
-    $frais = $_REQUEST['frais'];
     $email = $_REQUEST['email'];
     $type = $_REQUEST['type'];
     $password = hash('sha256', $_REQUEST['password']);
@@ -25,8 +23,6 @@ if (isset($_REQUEST['ajouter'])) {
         $errorMsg = "Entrez l'élève";
     } else if (empty($password)) {
         $errorMsg = "Entrez le mot de passe de l'élève";
-    } else if (empty($frais)) {
-        $errorMsg = "Entrez le montant des frais scolaires";
     } else if (empty($email)) {
         $errorMsg = "Entrez l'adresse email de l'élève";
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -48,9 +44,8 @@ if (isset($_REQUEST['ajouter'])) {
                     $errorMsg = "L'adresse email existe déjà. En choisir une autre.";
                 }
             } else if (!isset($errorMsg)) {
-                $insert_stmt = $db->prepare("INSERT INTO eleve (eleve, frais, famille_id) VALUES(:ueleve, :ufrais, $famille_id)");
+                $insert_stmt = $db->prepare("INSERT INTO eleve (eleve, famille_id) VALUES(:ueleve, $famille_id)");
                 $insert_stmt->bindParam(":ueleve", $eleve);
-                $insert_stmt->bindParam(":ufrais", $frais);
                 $insert_stmt->execute();
 
                 $currentID = $db->lastInsertId();
@@ -76,10 +71,9 @@ if (isset($_REQUEST['ajouter'])) {
     <h1 class="box-logo box-title text-warning">Ajouter un élève à la famille</h1>
     <div class="text-center">
         <input type="hidden" class="box-input mb-3" name="type" value="eleve" /><br>
-        <input type="hidden" class="box-input mb-3" name="eleve" value="eleve" /><br>
+        <input type="hidden" class="box-input mb-3" name="eleve" value="eleve" />
 
-        <input type="text" class="box-input mb-3" name="username" placeholder="Nom de l'élève" required /><br>
-        <input type="text" class="box-input mb-3" name="frais" placeholder="Montant frais scolaire" required /><br>
+        <input type="text" class="box-input mb-3" name="username" placeholder="Prénom de l'élève" required /><br>
         <input type="text" class="box-input mb-3" name="email" placeholder="Email" required /><br>
         <input type="password" class="box-input mb-3" name="password" placeholder="Mot de passe" required /><br>
         <input type="submit" name="ajouter" value="Ajouter" class="box-button btn-primary btn" />

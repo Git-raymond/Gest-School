@@ -45,12 +45,15 @@ $select_stmt->execute();
             ?>
         </table>
 </div>
-<br><br>
+<br>
 <?php
     } else {
-        echo "<br><br><div class='text-center text-danger'><p>Aucune notes enregistrée</p></div>";
+        echo ".<div class='text-center text-danger'><p>Aucune note enregistrée !</p></div></div>";
     }
 ?>
+<div class="text-center"> [ <a href="listeelevefamille.php">Retour</a> ] </div>
+<br><br>
+
 </body>
 </html>
 

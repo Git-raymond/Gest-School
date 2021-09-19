@@ -25,6 +25,7 @@ $select_stmt->execute();
             <tr>
                 <td>Matière</td>
                 <td>Année scolaire</td>
+                <td>Montant des frais de scolarité</td>
                 <td width="70px">EDIT</td>
             </tr>
             <?php
@@ -34,6 +35,7 @@ $select_stmt->execute();
                 echo "<tr>";
                 echo "<td>" . $row['matiere'] . "</td>";
                 echo "<td>" . $row['annee'] . "</td>";
+                echo "<td>" . $row['frais'] . "</td>";
                 echo "<td><a href='editmatiere.php?id=" . $row['idCursus'] . "' class='btn btn-info'>Edit</a></td>";
                 echo "</tr>";
                 echo "</form>";
@@ -44,9 +46,11 @@ $select_stmt->execute();
 <br><br>
 <?php
     } else {
-        echo "<br><br><div class='text-center text-danger'><p>Aucun cursus enregistré</p></div>";
+        echo ".<div class='text-center text-danger'><p>Aucun cursus enregistré !</p></div></div>";
     }
 ?>
+<div class="text-center"> [ <a href="indexadmin.php">Retour</a> ] </div>
+<br><br>
 </body>
 </html>
 

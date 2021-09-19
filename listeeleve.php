@@ -46,7 +46,7 @@ $select_stmt->execute();
 <br><br>
 <?php
     } else {
-        echo "<br><br><div class='text-center text-danger'><p>Aucun élève inscrit</p></div>";
+        echo ".<br><br><div class='text-center text-danger'><p>Aucun élève inscrit !</p></div></div>";
     }
 ?>
 </body>

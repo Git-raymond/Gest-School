@@ -62,7 +62,7 @@ if (isset($_SESSION['eleve_login'])) {
     <h2 class="text-center mt-5 mb-5"><?php echo $bienvenue ?></h2>
     <br>
     <div class="text-center">
-        <button type="button" class="btn btn-dark btn-lg btn-block"><a href="affichenotes.php">Afficher mes notes</a></button>
+        <button type="button" class="btn btn-warning btn-lg btn-block"><a href="affichenotes.php">Afficher mes notes</a></button>
     </div>
     <br><br><br>
     <div class="text-center"> [ <a href="logout.php">Se déconnecter</a> ] </div>

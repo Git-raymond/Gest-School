@@ -79,7 +79,8 @@ function template_header($title)
 			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
 			echo "<li><a class='dropdown-item' href='rechercheelevefamille.php'>Recherche des élèves de la famille</a></li>";
 			echo "<li><a class='dropdown-item' href='ajoutelevefamille.php'>Ajouter un élève à la famille</a></li>";
-			echo "<li><a class='dropdown-item' href='listeelevefamille.php'>Liste des élèves de la famille</a></li></ul></div>";
+			echo "<li><a class='dropdown-item' href='listeeleveattentefamille.php'>Liste des élèves en attente de scolarisation</a></li>";
+			echo "<li><a class='dropdown-item' href='listeelevefamille.php'>Liste des élèves scolarisés de la famille</a></li></ul></div>";
 		}
 
 		if ($_SESSION['type'] == 'eleve') {

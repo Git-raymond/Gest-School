@@ -2,7 +2,7 @@
 include 'functions.php';
 session_start();
 ?>
-<?= template_header('Ajout cursus') ?>
+<?= template_header('Ajout controle') ?>
 
 <?php
 if (!isset($_SESSION['type'])) {

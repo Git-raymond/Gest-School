@@ -1,8 +1,9 @@
 <?php
 include 'functions.php';
 session_start();
+$famille_id = $_SESSION['famille_id'];
 ?>
-<?= template_header('Liste élèves avec cursus') ?>
+<?= template_header('Liste élèves famille non scolarisés') ?>
 
 <?php
 if (!isset($_SESSION['type'])) {
@@ -11,12 +12,12 @@ if (!isset($_SESSION['type'])) {
 }
 require_once "connexion.php";
 
-$select_stmt = $db->prepare("SELECT * FROM comptes JOIN eleve ON comptes.eleve_id=eleve.idEleve JOIN cursus ON eleve.cursus_id=cursus.idCursus ");
+$select_stmt = $db->prepare("SELECT * FROM comptes INNER JOIN eleve ON comptes.eleve_id=eleve.idEleve WHERE cursus_id IS NULL ");
 $select_stmt->execute();
 
 ?>
 <div class="container">
-    <h2 class="text-warning text-center mt-5 mb-3">Liste des élèves avec cursus</h2>
+    <h2 class="text-warning text-center mt-5 mb-3">Liste des élèves en attente de scolarisation</h2>
     <br>
     <?php
     if ($select_stmt->rowCount() > 0) {
@@ -26,10 +27,6 @@ $select_stmt->execute();
                 <td>Prénom</td>
                 <td>Email</td>
                 <td>Statut (1=actif, 0=nul)</td>
-                <td>Matière</td>
-                <td>Année scolaire</td>
-                <td>Frais de scolarité</td>
-                <td width="200px">CHANGER LE CURSUS</td>
                 <td width="70px">EDIT</td>
             </tr>
             <?php
@@ -40,10 +37,6 @@ $select_stmt->execute();
                 echo "<td>" . $row['username'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $row['status'] . "</td>";
-                echo "<td>" . $row['matiere'] . "</td>";
-                echo "<td>" . $row['annee'] . "</td>";
-                echo "<td>" . $row['frais'] . "</td>";
-                echo "<td><a href='cursuseleveattribution.php?id=" . $row['id'] . "' class='d-grid gap-2 col-6 mx-auto btn btn-info'>Changer</a></td>";
                 echo "<td><a href='editcompte.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
                 echo "</tr>";
                 echo "</form>";

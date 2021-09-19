@@ -3,7 +3,7 @@ include 'functions.php';
 session_start();
 $famille_id = $_SESSION['famille_id'];
 ?>
-<?= template_header('Liste élèves famille') ?>
+<?= template_header('Liste élèves famille scolarisés') ?>
 
 <?php
 if (!isset($_SESSION['type'])) {
@@ -17,7 +17,7 @@ $select_stmt->execute();
 
 ?>
 <div class="container">
-    <h2 class="text-warning text-center mt-5 mb-3">Liste des élèves de la famille</h2>
+    <h2 class="text-warning text-center mt-5 mb-3">Liste des élèves scolarisés de la famille</h2>
     <br>
     <?php
     if ($select_stmt->rowCount() > 0) {

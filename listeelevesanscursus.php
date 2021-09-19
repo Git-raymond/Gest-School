@@ -2,7 +2,7 @@
 include 'functions.php';
 session_start();
 ?>
-<?= template_header('Liste élèves cursus') ?>
+<?= template_header('Liste élèves sans cursus') ?>
 
 <?php
 if (!isset($_SESSION['type'])) {

@@ -100,9 +100,27 @@ function template_header($title)
 
 		if ($_SESSION['type'] == 'enseignant') {
 			echo "<a href='indexenseignant.php'><i class='fas fa-chalkboard-teacher'></i>Espace Enseignant</a>";
-		}
 
-		if ($_SESSION['type'] == 'admin' or $_SESSION['type'] == 'famille' or $_SESSION['type'] == 'enseignant') {
+			echo "<nav id='navbar' class='navbar'></i><div class='dropdown'>
+			<a class='btn text-primary dropdown-toggle' href='#' role='button' id='dropdownMenuLink1' data-bs-toggle='dropdown' aria-expanded='false'><i class='fas fa-chalkboard'></i>
+				Elèves suivant le cursus de formation de l'enseignant
+			</a><ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+			echo "<li><a class='dropdown-item' href='rechercheelevecursusprof.php'>Recherche des élèves inscrits au cursus</a></li>";
+			echo "<li><a class='dropdown-item' href='listeelevecursusprof.php'>Liste des élèves inscrits au cursus</a></li>";
+			echo "<li><a class='dropdown-item' href='listecursusprof.php'>Liste des cursus de formation attribués à l'enseignant</a></li></ul></div>";
+			echo " 
+			<a href='index.php'><i class='fas fa-home'></i>Accueil</a>
+        	<i class='bi bi-list mobile-nav-toggle'></i>
+				<a href='logout.php'>Déconnexion</a>
+			</ul>
+			</div>
+			</nav>
+			</div>
+			</header>
+			";
+			}
+
+		if ($_SESSION['type'] == 'admin' or $_SESSION['type'] == 'famille') {
 			$idEdit = $_SESSION['id'];
 			echo " 
 			<nav id='navbar' class='navbar'>		
@@ -122,6 +140,7 @@ function template_header($title)
 		</header>
 		";
 		}
+
 		if ($_SESSION['type'] == 'admin') {
 			echo "<nav id='navbar' class='navbar d-flex justify-content-center'>";
 			echo "<div class='dropdown'>

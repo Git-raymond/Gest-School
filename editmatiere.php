@@ -146,7 +146,7 @@ if (isset($_REQUEST['btn_update'])) {
                                         }
 
                                         if ($_SESSION['type'] == 'enseignant') {
-                                            echo "<a href='indexensegnant.php' class='btn btn-primary'>Annuler</a>";
+                                            echo "<a href='indexenseignant.php' class='btn btn-primary'>Annuler</a>";
                                         }
                                         ?>
 

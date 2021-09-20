@@ -26,7 +26,6 @@ $select_stmt->execute();
             <tr>
                 <td>Matière</td>
                 <td>Année scolaire</td>
-                <td>Montant des frais de scolarité</td>
             </tr>
             <?php
             while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -35,7 +34,6 @@ $select_stmt->execute();
                 echo "<tr>";
                 echo "<td>" . $row['matiere'] . "</td>";
                 echo "<td>" . $row['annee'] . "</td>";
-                echo "<td>" . $row['frais'] . "</td>";
                 echo "</tr>";
                 echo "</form>";
             }

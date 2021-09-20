@@ -29,7 +29,6 @@ $select_stmt->execute();
                 <td>Statut (1=actif, 0=nul)</td>
                 <td>Matière</td>
                 <td>Année scolaire</td>
-                <td>Frais de scolarité</td>
                 <td>Notes et commentaires</td>
             </tr>
             <?php
@@ -42,7 +41,6 @@ $select_stmt->execute();
                 echo "<td>" . $row['status'] . "</td>";
                 echo "<td>" . $row['matiere'] . "</td>";
                 echo "<td>" . $row['annee'] . "</td>";
-                echo "<td>" . $row['frais'] . "</td>";
                 echo "<td><a href='affichenotesprof.php?id=" . $row['eleve_id'] . "' class='btn btn-warning d-grid gap-2 col-6 mx-auto'>Afficher</a></td>";
                 echo "</tr>";
                 echo "</form>";

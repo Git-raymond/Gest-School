@@ -61,6 +61,8 @@ if (isset($_POST['recherche'])) {
 }
 
 ?>
+<div class="text-center"> [ <a href="indexenseignant.php">Retour</a> ] </div>
+<br><br>
 </body>
 
 </html>

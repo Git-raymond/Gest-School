@@ -49,6 +49,8 @@ $select_stmt->execute();
         echo ".<br><br><div class='text-center text-danger'><p>Aucun enseignant inscrit !</p></div></div>";
     }
 ?>
+<div class="text-center"> [ <a href="indexadmin.php">Retour</a> ] </div>
+<br><br>
 </body>
 </html>
 

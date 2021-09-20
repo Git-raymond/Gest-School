@@ -58,6 +58,8 @@ $select_stmt->execute();
         echo ".<br><br><div class='text-center text-danger'><p>Aucun élève inscrit !</p></div></div>";
     }
 ?>
+<div class="text-center"> [ <a href="indexfamille.php">Retour</a> ] </div>
+<br><br>
 </body>
 
 </html>

@@ -56,6 +56,8 @@ $select_stmt->execute();
         echo ".<br><br><div class='text-center text-danger'><p>Aucun élève inscrit au cursus de l'enseignant!</p></div></div>";
     }
 ?>
+<div class="text-center"> [ <a href="indexenseignant.php">Retour</a> ] </div>
+<br><br>
 </body>
 
 </html>

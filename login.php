@@ -90,6 +90,8 @@ session_start();
                                         $_SESSION["enseignant_login"] = $username;
                                         $_SESSION['type'] = $type;
                                         $_SESSION['id'] = $id;
+                                        $_SESSION['eleve_id'] = $eleve_id;
+                                        $_SESSION['famille_id'] = $famille_id;
                                         $_SESSION['enseignant_id'] = $enseignant_id;
                                         $loginMsg = "Redirection vers compte Enseignant";
                                         header("refresh:1;indexenseignant.php");

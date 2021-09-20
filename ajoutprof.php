@@ -85,7 +85,8 @@ if (isset($_REQUEST['ajouter'])) {
 <?php if (!empty($registerMsg)) { ?>
     <p class="text-center text-success"><?php echo $registerMsg; ?></p>
 <?php } ?>
-
+<div class="text-center"> [ <a href="indexadmin.php">Retour</a> ] </div>
+<br><br>
 </body>
 </html>
 

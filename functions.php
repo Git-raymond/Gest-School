@@ -68,6 +68,7 @@ function template_header($title)
 
 		if ($_SESSION['type'] == 'admin') {
 			echo "<a href='indexadmin.php'><i class='fas fa-tools'></i>Espace Admin</a>";
+			echo "<a href='stats.php'><i class='fas fa-database'></i>Statistiques</a>";
 		}
 
 		if ($_SESSION['type'] == 'famille') {

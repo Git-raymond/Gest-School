@@ -125,7 +125,8 @@ session_start();
                 <h1 class="box-title mb-3 text-secondary">Connexion</h1>
                 <div class="margin-input">
                     <select class="mt-3 mb-3" name="type">
-                        <option selected="selected" value="admin">Admin</option>
+                        <option selected="selected">Choisir votre rôle</option>
+                        <option value="admin">Admin</option>
                         <option value="famille">Famille</option>
                         <option value="eleve">Elève</option>
                         <option value="enseignant">Enseignant</option>

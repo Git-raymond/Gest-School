@@ -43,7 +43,7 @@ $select_stmt->execute();
                 echo "<td>" . $row['matiere'] . "</td>";
                 echo "<td>" . $row['annee'] . "</td>";
                 echo "<td>" . $row['frais'] . "</td>";
-                echo "<td><a href='cursuseleveattribution.php?id=" . $row['id'] . "' class='d-grid gap-2 col-6 mx-auto btn btn-info'>Changer</a></td>";
+                echo "<td><a href='cursuseleveattribution.php?id=" . $row['id'] . "' class='d-grid gap-2 col-6 mx-auto btn btn-success'>Changer</a></td>";
                 echo "<td><a href='editcompte.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
                 echo "</tr>";
                 echo "</form>";

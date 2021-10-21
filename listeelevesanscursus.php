@@ -37,7 +37,7 @@ $select_stmt->execute();
                 echo "<td>" . $row['username'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $row['status'] . "</td>";
-                echo "<td><a href='cursuseleveattribution.php?id=" . $row['id'] . "' class='d-grid gap-2 col-6 mx-auto btn btn-info'>Attribuer</a></td>";
+                echo "<td><a href='cursuseleveattribution.php?id=" . $row['id'] . "' class='d-grid gap-2 col-6 mx-auto btn btn-success'>Attribuer</a></td>";
                 echo "<td><a href='editcompte.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
                 echo "</tr>";
                 echo "</form>";

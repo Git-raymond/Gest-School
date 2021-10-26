@@ -30,7 +30,7 @@ if (isset($_REQUEST['ajouter'])) {
         $errorMsg = "Le mot de passe doit contenir au moins 5 caractères";
     } else {
         try {
-            $select_stmt = $db->prepare("SELECT username, email FROM comptes WHERE username=:uusername OR email=:uemail");
+            $select_stmt = $db->prepare("SELECT username, email FROM p2_g3_comptes WHERE username=:uusername OR email=:uemail");
             $select_stmt->bindParam(":uusername", $username);
             $select_stmt->bindParam(":uemail", $email);
             $select_stmt->execute();
@@ -44,13 +44,13 @@ if (isset($_REQUEST['ajouter'])) {
                 }
             } else if (!isset($errorMsg)) {
 
-                $insert_stmt = $db->prepare("INSERT INTO enseignant (enseignant) VALUES(:uenseignant)");
+                $insert_stmt = $db->prepare("INSERT INTO p2_g3_enseignant (enseignant) VALUES(:uenseignant)");
                 $insert_stmt->bindParam(":uenseignant", $enseignant);
                 $insert_stmt->execute();
 
                 $currentID = $db->lastInsertId();
 
-                $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type, enseignant_id ) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
+                $insert_stmt = $db->prepare("INSERT INTO p2_g3_comptes(username, email, password, type, enseignant_id ) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
                 $insert_stmt->bindParam(":uusername", $username);
                 $insert_stmt->bindParam(":uemail", $email);
                 $insert_stmt->bindParam(":upassword", $password);

@@ -28,7 +28,7 @@ session_start();
             $errorMsg = "Le mot de passe doit contenir au moins 5 caractères";
         } else {
             try {
-                $select_stmt = $db->prepare("SELECT username, email FROM comptes WHERE username=:uusername OR email=:uemail");
+                $select_stmt = $db->prepare("SELECT username, email FROM p2_g3_comptes WHERE username=:uusername OR email=:uemail");
                 $select_stmt->bindParam(":uusername", $username);
                 $select_stmt->bindParam(":uemail", $email);
                 $select_stmt->execute();
@@ -41,13 +41,13 @@ session_start();
                         $errorMsg = "L'adresse email existe déjà. En choisir une autre.";
                     }
                 } else if (!isset($errorMsg)) {
-                    $insert_stmt = $db->prepare("INSERT INTO famille (famille) VALUES(:ufamille)");
+                    $insert_stmt = $db->prepare("INSERT INTO p2_g3_famille (famille) VALUES(:ufamille)");
                     $insert_stmt->bindParam(":ufamille", $famille);
                     $insert_stmt->execute();
 
                     $currentID = $db->lastInsertId();
 
-                    $insert_stmt = $db->prepare("INSERT INTO comptes(username, email, password, type, famille_id) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
+                    $insert_stmt = $db->prepare("INSERT INTO p2_g3_comptes(username, email, password, type, famille_id) VALUES(:uusername, :uemail, :upassword, :utype, $currentID)");
                     $insert_stmt->bindParam(":uusername", $username);
                     $insert_stmt->bindParam(":uemail", $email);
                     $insert_stmt->bindParam(":upassword", $password);

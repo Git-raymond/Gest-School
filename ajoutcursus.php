@@ -23,14 +23,14 @@ if (isset($_REQUEST['ajouter'])) {
         $errorMsg = "Entrez la date";
     } else {
         try {
-            $select_stmt = $db->prepare("SELECT matiere, annee FROM cursus WHERE matiere=:umatiere OR annee=:uannee");
+            $select_stmt = $db->prepare("SELECT matiere, annee FROM p2_g3_cursus WHERE matiere=:umatiere OR annee=:uannee");
             $select_stmt->bindParam(":umatiere", $matiere);
             $select_stmt->bindParam(":uannee", $annee);
             $select_stmt->execute();
             $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!isset($errorMsg)) {
-                $insert_stmt = $db->prepare("INSERT INTO cursus(matiere, annee, frais) VALUES(:umatiere, :uannee, :ufrais)");
+                $insert_stmt = $db->prepare("INSERT INTO p2_g3_cursus(matiere, annee, frais) VALUES(:umatiere, :uannee, :ufrais)");
                 $insert_stmt->bindParam(":umatiere", $matiere);
                 $insert_stmt->bindParam(":uannee", $annee);
                 $insert_stmt->bindParam(":ufrais", $frais);

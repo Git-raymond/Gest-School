@@ -29,7 +29,7 @@ if (isset($_REQUEST['valider'])) {
         $errorMsg = "Entrez la date";
     } else {
         try {
-            $select_stmt = $db->prepare("SELECT intitule, note, commentaire FROM controle WHERE intitule=:uintitule OR note=:unote OR commentaire=:ucommentaire OR date=:udate");
+            $select_stmt = $db->prepare("SELECT intitule, note, commentaire FROM p2_g3_controle WHERE intitule=:uintitule OR note=:unote OR commentaire=:ucommentaire OR date=:udate");
             $select_stmt->bindParam(":uintitule", $intitule);
             $select_stmt->bindParam(":unote", $note);
             $select_stmt->bindParam(":ucommentaire", $commentaire);
@@ -38,7 +38,7 @@ if (isset($_REQUEST['valider'])) {
             $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!isset($errorMsg)) {
-                $insert_stmt = $db->prepare("INSERT INTO controle (intitule, note, commentaire, date, enseignant_id, eleve_id) VALUES(:uintitule, :unote, :ucommentaire, :udate, $enseignant_id, $eleve_id)");
+                $insert_stmt = $db->prepare("INSERT INTO p2_g3_controle (intitule, note, commentaire, date, enseignant_id, eleve_id) VALUES(:uintitule, :unote, :ucommentaire, :udate, $enseignant_id, $eleve_id)");
                 $insert_stmt->bindParam(":uintitule", $intitule);
                 $insert_stmt->bindParam(":unote", $note);
                 $insert_stmt->bindParam(":ucommentaire", $commentaire);
@@ -60,7 +60,7 @@ if (isset($_REQUEST['valider'])) {
     <div class="text-center">
         <br>
         <input type="text" class="box-input mb-3" name="intitule" placeholder="Intitule" required /><br>
-        <input type="text" class="box-input mb-3" name="note" placeholder="Note" required /><br>
+        <input type="number" class="box-input mb-3" name="note" placeholder="Note" required /><br>
         <textarea class="box-input mb-3" name="commentaire" placeholder="Commentaires" required></textarea><br>
         <input type="date" class="box-input mb-3" name="date" placeholder="Date" required /><br>
         
@@ -70,7 +70,7 @@ if (isset($_REQUEST['valider'])) {
         <div class="col-sm-12">
             <select name="eleve_id">
                 <?php
-                $stmt = $db->prepare("SELECT * FROM comptes JOIN eleve ON comptes.eleve_id=eleve.idEleve JOIN cursus ON eleve.cursus_id=cursus.idCursus WHERE cursus.enseignant_id=$enseignant_id");
+                $stmt = $db->prepare("SELECT * FROM p2_g3_comptes JOIN p2_g3_eleve ON p2_g3_comptes.eleve_id=p2_g3_eleve.idEleve JOIN p2_g3_cursus ON p2_g3_eleve.cursus_id=p2_g3_cursus.idCursus WHERE p2_g3_cursus.enseignant_id=$enseignant_id");
                 $stmt->execute();
                 while ($row = $stmt->fetch()) {
                 ?>

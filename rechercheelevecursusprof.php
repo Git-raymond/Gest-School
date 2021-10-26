@@ -29,7 +29,7 @@ require_once "connexion.php";
 // Récupère la recherche
 if (isset($_POST['recherche'])) {
     $recherche = $_POST['recherche'];
-    $select_stmt = $db->prepare("SELECT * FROM comptes JOIN eleve ON comptes.eleve_id=eleve.idEleve JOIN cursus ON eleve.cursus_id=cursus.idCursus WHERE cursus.enseignant_id=$enseignant_id AND username LIKE '%$recherche%' OR cursus.enseignant_id=$enseignant_id AND email LIKE '%$recherche%' OR cursus.enseignant_id=$enseignant_id AND status LIKE '%$recherche%'");
+    $select_stmt = $db->prepare("SELECT * FROM p2_g3_comptes JOIN p2_g3_eleve ON p2_g3_comptes.eleve_id=p2_g3_eleve.idEleve JOIN p2_g3_cursus ON p2_g3_eleve.cursus_id=p2_g3_cursus.idCursus WHERE p2_g3_cursus.enseignant_id=$enseignant_id AND username LIKE '%$recherche%' OR p2_g3_cursus.enseignant_id=$enseignant_id AND email LIKE '%$recherche%' OR p2_g3_cursus.enseignant_id=$enseignant_id AND status LIKE '%$recherche%'");
     $select_stmt->execute();
 
     // affichage du résultat

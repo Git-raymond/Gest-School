@@ -12,7 +12,7 @@ if (!isset($_SESSION['type'])) {
 }
 require_once "connexion.php";
 
-$select_stmt = $db->prepare("SELECT * FROM cursus WHERE cursus.enseignant_id=$enseignant_id");
+$select_stmt = $db->prepare("SELECT * FROM p2_g3_cursus WHERE p2_g3_cursus.enseignant_id=$enseignant_id");
 $select_stmt->execute();
 
 ?>

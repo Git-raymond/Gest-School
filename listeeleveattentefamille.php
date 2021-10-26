@@ -12,7 +12,7 @@ if (!isset($_SESSION['type'])) {
 }
 require_once "connexion.php";
 
-$select_stmt = $db->prepare("SELECT * FROM comptes INNER JOIN eleve ON comptes.eleve_id=eleve.idEleve WHERE cursus_id IS NULL AND eleve.famille_id=$famille_id");
+$select_stmt = $db->prepare("SELECT * FROM p2_g3_comptes INNER JOIN p2_g3_eleve ON p2_g3_comptes.eleve_id=p2_g3_eleve.idEleve WHERE cursus_id IS NULL AND p2_g3_eleve.famille_id=$famille_id");
 $select_stmt->execute();
 
 ?>

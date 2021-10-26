@@ -13,7 +13,7 @@ if (!isset($_SESSION['type'])) {
 }
 
 $eleve_id = $_REQUEST['id']; 
-$select_stmt = $db->prepare("SELECT * FROM controle WHERE eleve_id=$eleve_id");
+$select_stmt = $db->prepare("SELECT * FROM p2_g3_controle WHERE eleve_id=$eleve_id");
 $select_stmt->execute();
 
 ?>

@@ -14,7 +14,7 @@ require_once "connexion.php";
 if (isset($_REQUEST['id'])) {
     try {
         $id = $_REQUEST['id'];
-        $select_stmt = $db->prepare('SELECT * FROM comptes WHERE id =:id');
+        $select_stmt = $db->prepare('SELECT * FROM p2_g3_comptes WHERE id =:id');
         $select_stmt->bindParam(':id', $id);
         $select_stmt->execute();
         $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ if (isset($_REQUEST['btn_update'])) {
     } else {
         try {
             if (!isset($errorMsg)) {
-                $update_stmt = $db->prepare('UPDATE eleve SET cursus_id=:ucursus_id WHERE idEleve=:uidEleve');
+                $update_stmt = $db->prepare('UPDATE p2_g3_eleve SET cursus_id=:ucursus_id WHERE idEleve=:uidEleve');
                 $update_stmt->bindParam(':ucursus_id', $idCursus);
                 $update_stmt->bindParam(':uidEleve', $idUser);
 
@@ -92,7 +92,7 @@ if (isset($_REQUEST['btn_update'])) {
                                             <div class="col-sm-12">
                                                 <select name="idCursus">
                                                     <?php
-                                                    $stmt = $db->prepare("SELECT * FROM cursus");
+                                                    $stmt = $db->prepare("SELECT * FROM p2_g3_cursus");
                                                     $stmt->execute();
                                                     while ($row = $stmt->fetch()) {
                                                     ?>

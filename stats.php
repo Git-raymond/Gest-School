@@ -11,7 +11,7 @@ if (!isset($_SESSION['type'])) {
 }
 require_once "connexion.php";
 
-$stmt = $db->prepare("SELECT count(*) FROM comptes WHERE type='famille'");
+$stmt = $db->prepare("SELECT count(*) FROM p2_g3_comptes WHERE type='famille'");
 $stmt->execute();
 $nombreFamille = $stmt->fetchColumn();
 ?>
@@ -22,7 +22,7 @@ $nombreFamille = $stmt->fetchColumn();
 <div class="container">
     <h4 class="text-center text-primary mt-5 mb-3">Liste des familles</h4>
     <?php
-    $select_stmt = $db->prepare("SELECT * FROM comptes WHERE type='famille'");
+    $select_stmt = $db->prepare("SELECT * FROM p2_g3_comptes WHERE type='famille'");
     $select_stmt->execute();
 
     if ($select_stmt->rowCount() > 0) {
@@ -57,7 +57,7 @@ $nombreFamille = $stmt->fetchColumn();
 <div class="container">
     <h4 class="text-center text-primary mt-5 mb-3">Liste des profils de leurs enfants</h4>
     <?php
-    $select_stmt = $db->prepare("SELECT username, email, type,  matiere, annee, frais FROM comptes JOIN eleve ON comptes.eleve_id=eleve.idEleve JOIN cursus ON eleve.cursus_id=cursus.idCursus");
+    $select_stmt = $db->prepare("SELECT username, email, type,  matiere, annee, frais FROM p2_g3_comptes JOIN p2_g3_eleve ON p2_g3_comptes.eleve_id=p2_g3_eleve.idEleve JOIN p2_g3_cursus ON p2_g3_eleve.cursus_id=p2_g3_cursus.idCursus");
     $select_stmt->execute();
 
     if ($select_stmt->rowCount() > 0) {
@@ -95,7 +95,7 @@ $nombreFamille = $stmt->fetchColumn();
 ?>
 
 <?php
-$select_stmt = $db->prepare("SELECT * FROM comptes JOIN enseignant ON comptes.enseignant_id=idEnseignant JOIN cursus ON enseignant.idEnseignant=cursus.enseignant_id ORDER BY cursus.idCursus ASC");
+$select_stmt = $db->prepare("SELECT * FROM p2_g3_comptes JOIN p2_g3_enseignant ON p2_g3_comptes.enseignant_id=idEnseignant JOIN p2_g3_cursus ON p2_g3_enseignant.idEnseignant=p2_g3_cursus.enseignant_id ORDER BY p2_g3_cursus.idCursus ASC");
 $select_stmt->execute();
 ?>
 

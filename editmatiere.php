@@ -14,7 +14,7 @@ require_once "connexion.php";
 if (isset($_REQUEST['id'])) {
     try {
         $id = $_REQUEST['id'];
-        $select_stmt = $db->prepare('SELECT * FROM cursus WHERE idCursus =:id');
+        $select_stmt = $db->prepare('SELECT * FROM p2_g3_cursus WHERE idCursus =:id');
         $select_stmt->bindParam(':id', $id);
         $select_stmt->execute();
         $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ if (isset($_POST['delete_id'])) {
     $idCursus = $_POST['delete_id'];    //get delete_id and store in $id variable
 
     //delete an orignal record from db
-    $delete_stmt = $db->prepare('DELETE FROM cursus WHERE idCursus =:id');
+    $delete_stmt = $db->prepare('DELETE FROM p2_g3_cursus WHERE idCursus =:id');
     $delete_stmt->bindParam(':id', $id);
 
     if ($delete_stmt->execute()) {
@@ -53,7 +53,7 @@ if (isset($_REQUEST['btn_update'])) {
     } else {
         try {
             if (!isset($errorMsg)) {
-                $update_stmt = $db->prepare('UPDATE cursus SET matiere=:umatiere, annee=:uannee, frais=:ufrais WHERE idCursus=:id'); //sql update query
+                $update_stmt = $db->prepare('UPDATE p2_g3_cursus SET matiere=:umatiere, annee=:uannee, frais=:ufrais WHERE idCursus=:id'); //sql update query
                 $update_stmt->bindParam(':umatiere', $matiere);
                 $update_stmt->bindParam(':uannee', $annee);
                 $update_stmt->bindParam(':ufrais', $frais);

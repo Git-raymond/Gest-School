@@ -14,7 +14,7 @@ require_once "connexion.php";
 if (isset($_REQUEST['id'])) {
     try {
         $id = $_REQUEST['id']; //get "update_id" from index.php page through anchor tag operation and store in "$id" variable
-        $select_stmt = $db->prepare('SELECT * FROM comptes WHERE id =:id'); //sql select query
+        $select_stmt = $db->prepare('SELECT * FROM p2_g3_comptes WHERE id =:id'); //sql select query
         $select_stmt->bindParam(':id', $id);
         $select_stmt->execute();
         $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ if (isset($_POST['delete_id'])) {
     $id = $_POST['delete_id'];    //get delete_id and store in $id variable
 
     //delete an orignal record from db
-    $delete_stmt = $db->prepare('DELETE FROM comptes WHERE id =:id');
+    $delete_stmt = $db->prepare('DELETE FROM p2_g3_comptes WHERE id =:id');
     $delete_stmt->bindParam(':id', $id);
 
     if ($delete_stmt->execute()) {
@@ -55,7 +55,7 @@ if (isset($_REQUEST['btn_update'])) {
     } else {
         try {
             if (!isset($errorMsg)) {
-                $update_stmt = $db->prepare('UPDATE comptes SET username=:uusername, email=:uemail, password=:upassword, status=:ustatus WHERE id=:uid'); //sql update query
+                $update_stmt = $db->prepare('UPDATE p2_g3_comptes SET username=:uusername, email=:uemail, password=:upassword, status=:ustatus WHERE id=:uid'); //sql update query
                 $update_stmt->bindParam(':uusername', $username);
                 $update_stmt->bindParam(':uemail', $email);
                 $update_stmt->bindParam(':upassword', $password);

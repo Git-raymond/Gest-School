@@ -11,7 +11,7 @@ if (!isset($_SESSION['type'])) {
 }
 require_once "connexion.php";
 
-$select_stmt = $db->prepare("SELECT * FROM comptes JOIN eleve ON comptes.eleve_id=eleve.idEleve JOIN cursus ON eleve.cursus_id=cursus.idCursus ");
+$select_stmt = $db->prepare("SELECT * FROM p2_g3_comptes JOIN p2_g3_eleve ON p2_g3_comptes.eleve_id=p2_g3_eleve.idEleve JOIN p2_g3_cursus ON p2_g3_eleve.cursus_id=p2_g3_cursus.idCursus ");
 $select_stmt->execute();
 
 ?>

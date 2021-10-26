@@ -35,7 +35,7 @@ session_start();
             $errorMsg = "Sélectionner votre rôle";
         } else if ($username and $password and $type) {
             try {
-                $select_stmt = $db->prepare("SELECT id, username, type, password, status, famille_id, eleve_id, enseignant_id FROM comptes WHERE username=:uusername AND type=:utype AND password=:upassword");
+                $select_stmt = $db->prepare("SELECT id, username, type, password, status, famille_id, eleve_id, enseignant_id FROM p2_g3_comptes WHERE username=:uusername AND type=:utype AND password=:upassword");
                 // $select_stmt->bindParam(":uid", $id);
                 $select_stmt->bindParam(":uusername", $username);
                 $select_stmt->bindParam(":utype", $type);

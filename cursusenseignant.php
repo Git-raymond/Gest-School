@@ -11,7 +11,7 @@ if (!isset($_SESSION['type'])) {
 }
 require_once "connexion.php";
 
-$select_stmt = $db->prepare("SELECT * FROM comptes WHERE type= 'enseignant'");
+$select_stmt = $db->prepare("SELECT * FROM p2_g3_comptes WHERE type= 'enseignant'");
 $select_stmt->execute();
 
 ?>

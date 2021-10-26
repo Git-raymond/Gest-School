@@ -28,7 +28,7 @@ require_once "connexion.php";
 // Récupère la recherche
 if (isset($_POST['recherche'])) {
     $recherche = $_POST['recherche'];
-    $select_stmt = $db->prepare("SELECT matiere, annee, frais FROM cursus WHERE matiere LIKE '%$recherche%' OR annee LIKE '%$recherche%'");
+    $select_stmt = $db->prepare("SELECT matiere, annee, frais FROM p2_g3_cursus WHERE matiere LIKE '%$recherche%' OR annee LIKE '%$recherche%'");
     $select_stmt->execute();
 
     // affichage du résultat

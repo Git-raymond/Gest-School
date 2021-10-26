@@ -29,7 +29,7 @@ require_once "connexion.php";
 // Récupère la recherche
 if (isset($_POST['recherche'])) {
     $recherche = $_POST['recherche'];
-    $select_stmt = $db->prepare("SELECT username, email, status FROM comptes WHERE type='eleve' AND famille_id=$famille_id AND username LIKE '%$recherche%' OR type='eleve' AND famille_id=$famille_id AND email LIKE '%$recherche%' OR type='eleve' AND famille_id=$famille_id AND status LIKE '%$recherche%'");
+    $select_stmt = $db->prepare("SELECT username, email, status FROM p2_g3_comptes WHERE type='eleve' AND famille_id=$famille_id AND username LIKE '%$recherche%' OR type='eleve' AND famille_id=$famille_id AND email LIKE '%$recherche%' OR type='eleve' AND famille_id=$famille_id AND status LIKE '%$recherche%'");
     $select_stmt->execute();
 
     // affichage du résultat

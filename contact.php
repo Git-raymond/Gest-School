@@ -2,7 +2,7 @@
 include 'functions.php';
 ?>
 
-<?= template_header('Accueil') ?>
+<?= template_header('Contact') ?>
 
 <main id="main">
 

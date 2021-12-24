@@ -21,27 +21,29 @@ $select_stmt->execute();
     <?php
     if ($select_stmt->rowCount() > 0) {
     ?>
-        <table class="table table-bordered table-striped table-dark table-hover bg-light">
-            <tr>
-                <td>Nom</td>
-                <td>Email</td>
-                <td>Statut (1=actif, 0=nul)</td>
-                <td width="70px">EDIT</td>
-            </tr>
-            <?php
-            while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<form action='' method='POST'>";
-                echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
-                echo "<tr>";
-                echo "<td>" . $row['username'] . "</td>";
-                echo "<td>" . $row['email'] . "</td>";
-                echo "<td>" . $row['status'] . "</td>";
-                echo "<td><a href='editcompte.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
-                echo "</tr>";
-                echo "</form>";
-            }
-            ?>
-        </table>
+        <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+            <table class="table table-bordered table-striped table-dark table-hover bg-light">
+                <tr>
+                    <td>Nom</td>
+                    <td>Email</td>
+                    <td>Statut (1=actif, 0=nul)</td>
+                    <td width="70px">EDIT</td>
+                </tr>
+                <?php
+                while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<form action='' method='POST'>";
+                    echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
+                    echo "<tr>";
+                    echo "<td>" . $row['username'] . "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
+                    echo "<td>" . $row['status'] . "</td>";
+                    echo "<td><a href='editcompte.php?id=" . $row['id'] . "' class='btn btn-info'>Edit</a></td>";
+                    echo "</tr>";
+                    echo "</form>";
+                }
+                ?>
+            </table>
+        </div>
 </div>
 <br><br>
 <?php
@@ -52,6 +54,7 @@ $select_stmt->execute();
 <div class="text-center"> [ <a href="indexadmin.php">Retour</a> ] </div>
 <br><br>
 </body>
+
 </html>
 
 <?= template_footer() ?>

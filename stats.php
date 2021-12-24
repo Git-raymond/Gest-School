@@ -27,25 +27,27 @@ $nombreFamille = $stmt->fetchColumn();
 
     if ($select_stmt->rowCount() > 0) {
     ?>
-        <table class="table table-bordered table-striped table-dark table-hover bg-light">
-            <tr>
-                <td>Nom</td>
-                <td>Email</td>
-                <td>Rôle</td>
-            </tr>
-            <?php
-            while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<form action='' method='POST'>";
-                echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
-                echo "<tr>";
-                echo "<td>" . $row['username'] . "</td>";
-                echo "<td>" . $row['email'] . "</td>";
-                echo "<td>" . $row['type'] . "</td>";
-                echo "</tr>";
-                echo "</form>";
-            }
-            ?>
-        </table>
+        <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+            <table class="table table-bordered table-striped table-dark table-hover bg-light">
+                <tr>
+                    <td>Nom</td>
+                    <td>Email</td>
+                    <td>Rôle</td>
+                </tr>
+                <?php
+                while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<form action='' method='POST'>";
+                    echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
+                    echo "<tr>";
+                    echo "<td>" . $row['username'] . "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
+                    echo "<td>" . $row['type'] . "</td>";
+                    echo "</tr>";
+                    echo "</form>";
+                }
+                ?>
+            </table>
+        </div>
 </div>
 <?php
     } else {
@@ -62,31 +64,33 @@ $nombreFamille = $stmt->fetchColumn();
 
     if ($select_stmt->rowCount() > 0) {
     ?>
-        <table class="table table-bordered table-striped table-dark table-hover bg-light">
-            <tr>
-                <td>Nom</td>
-                <td>Email</td>
-                <td>Rôle</td>
-                <td>Matière</td>
-                <td>Année scolaire</td>
-                <td>Frais de scolarité</td>
-            </tr>
-            <?php
-            while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<form action='' method='POST'>";
-                // echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
-                echo "<tr>";
-                echo "<td>" . $row['username'] . "</td>";
-                echo "<td>" . $row['email'] . "</td>";
-                echo "<td>" . $row['type'] . "</td>";
-                echo "<td>" . $row['matiere'] . "</td>";
-                echo "<td>" . $row['annee'] . "</td>";
-                echo "<td>" . $row['frais'] . "</td>";
-                echo "</tr>";
-                echo "</form>";
-            }
-            ?>
-        </table>
+        <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+            <table class="table table-bordered table-striped table-dark table-hover bg-light">
+                <tr>
+                    <td>Nom</td>
+                    <td>Email</td>
+                    <td>Rôle</td>
+                    <td>Matière</td>
+                    <td>Année scolaire</td>
+                    <td>Frais de scolarité</td>
+                </tr>
+                <?php
+                while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<form action='' method='POST'>";
+                    // echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
+                    echo "<tr>";
+                    echo "<td>" . $row['username'] . "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
+                    echo "<td>" . $row['type'] . "</td>";
+                    echo "<td>" . $row['matiere'] . "</td>";
+                    echo "<td>" . $row['annee'] . "</td>";
+                    echo "<td>" . $row['frais'] . "</td>";
+                    echo "</tr>";
+                    echo "</form>";
+                }
+                ?>
+            </table>
+        </div>
 </div>
 <?php
     } else {
@@ -104,29 +108,31 @@ $select_stmt->execute();
     <?php
     if ($select_stmt->rowCount() > 0) {
     ?>
-        <table class="table table-bordered table-striped table-dark table-hover bg-light">
-            <tr>
-                <td>Matière</td>
-                <td>Année</td>
-                <td>Nom</td>
-                <td>Email</td>
-                <td>Rôle</td>
-            </tr>
-            <?php
-            while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<form action='' method='POST'>";
-                echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
-                echo "<tr>";
-                echo "<td>" . $row['matiere'] . "</td>";
-                echo "<td>" . $row['annee'] . "</td>";
-                echo "<td>" . $row['username'] . "</td>";
-                echo "<td>" . $row['email'] . "</td>";
-                echo "<td>" . $row['type'] . "</td>";
-                echo "</tr>";
-                echo "</form>";
-            }
-            ?>
-        </table>
+        <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+            <table class="table table-bordered table-striped table-dark table-hover bg-light">
+                <tr>
+                    <td>Matière</td>
+                    <td>Année</td>
+                    <td>Nom</td>
+                    <td>Email</td>
+                    <td>Rôle</td>
+                </tr>
+                <?php
+                while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<form action='' method='POST'>";
+                    echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
+                    echo "<tr>";
+                    echo "<td>" . $row['matiere'] . "</td>";
+                    echo "<td>" . $row['annee'] . "</td>";
+                    echo "<td>" . $row['username'] . "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
+                    echo "<td>" . $row['type'] . "</td>";
+                    echo "</tr>";
+                    echo "</form>";
+                }
+                ?>
+            </table>
+        </div>
 </div>
 <br><br>
 <?php

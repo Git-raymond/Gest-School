@@ -22,31 +22,33 @@ $select_stmt->execute();
     <?php
     if ($select_stmt->rowCount() > 0) {
     ?>
-        <table class="table table-bordered table-striped table-dark table-hover bg-light">
-            <tr>
-                <td>Prénom</td>
-                <td>Email</td>
-                <td>Statut (1=actif, 0=nul)</td>
-                <td>Matière</td>
-                <td>Année scolaire</td>
-                <td>Notes et commentaires</td>
-            </tr>
-            <?php
-            while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<form action='' method='POST'>";
-                echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
-                echo "<tr>";
-                echo "<td>" . $row['username'] . "</td>";
-                echo "<td>" . $row['email'] . "</td>";
-                echo "<td>" . $row['status'] . "</td>";
-                echo "<td>" . $row['matiere'] . "</td>";
-                echo "<td>" . $row['annee'] . "</td>";
-                echo "<td><a href='affichenotesprof.php?id=" . $row['eleve_id'] . "' class='btn btn-warning d-grid gap-2 col-6 mx-auto'>Afficher</a></td>";
-                echo "</tr>";
-                echo "</form>";
-            }
-            ?>
-        </table>
+        <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+            <table class="table table-bordered table-striped table-dark table-hover bg-light">
+                <tr>
+                    <td>Prénom</td>
+                    <td>Email</td>
+                    <td>Statut (1=actif, 0=nul)</td>
+                    <td>Matière</td>
+                    <td>Année scolaire</td>
+                    <td>Notes et commentaires</td>
+                </tr>
+                <?php
+                while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<form action='' method='POST'>";
+                    echo "<input type='hidden' value='" . $row['id'] . "' name='userid' />";
+                    echo "<tr>";
+                    echo "<td>" . $row['username'] . "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
+                    echo "<td>" . $row['status'] . "</td>";
+                    echo "<td>" . $row['matiere'] . "</td>";
+                    echo "<td>" . $row['annee'] . "</td>";
+                    echo "<td><a href='affichenotesprof.php?id=" . $row['eleve_id'] . "' class='btn btn-warning d-grid gap-2 col-6 mx-auto'>Afficher</a></td>";
+                    echo "</tr>";
+                    echo "</form>";
+                }
+                ?>
+            </table>
+        </div>
 </div>
 <br><br>
 <?php

@@ -22,32 +22,34 @@ $select_stmt->execute();
     <?php
     if ($select_stmt->rowCount() > 0) {
     ?>
-        <table class="table table-bordered table-striped table-dark table-hover bg-light">
-            <tr>
-                <td>Intitulé</td>
-                <td>Notes</td>
-                <td>Commentaires</td>
-                <td>Date</td>
-            </tr>
-            <?php
-            while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<form action='' method='POST'>";
-                echo "<input type='hidden' value='" . $row['idControle'] . "' name='userid' />";
-                echo "<tr>";
-                echo "<td>" . $row['intitule'] . "</td>";
-                echo "<td>" . $row['note'] . "</td>";
-                echo "<td>" . $row['commentaire'] . "</td>";
-                echo "<td>" . $row['date'] . "</td>";
-                echo "</tr>";
-                echo "</form>";
-            }
-            ?>
-        </table>
+        <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+            <table class="table table-bordered table-striped table-dark table-hover bg-light">
+                <tr>
+                    <td>Intitulé</td>
+                    <td>Notes</td>
+                    <td>Commentaires</td>
+                    <td>Date</td>
+                </tr>
+                <?php
+                while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<form action='' method='POST'>";
+                    echo "<input type='hidden' value='" . $row['idControle'] . "' name='userid' />";
+                    echo "<tr>";
+                    echo "<td>" . $row['intitule'] . "</td>";
+                    echo "<td>" . $row['note'] . "</td>";
+                    echo "<td>" . $row['commentaire'] . "</td>";
+                    echo "<td>" . $row['date'] . "</td>";
+                    echo "</tr>";
+                    echo "</form>";
+                }
+                ?>
+            </table>
+        </div>
 </div>
 <br><br>
 <?php
     } else {
-        echo ".<div class='text-center text-danger'><p>Aucune note enregistrée !</p></div></div>";
+        echo "<div class='text-center text-danger'><p>Aucune note enregistrée !</p></div></div>";
     }
 ?>
 <div class="text-center"> [ <a href="indexeleve.php">Retour</a> ] </div>
